@@ -1,34 +1,27 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import {HashRouter as Router, Route} from 'react-router-dom'
 
 import { fetchFruits } from '../actions'
 
-export class App extends React.Component {
-  state = {
-    fruits: []
-  }
+import Home from './Home'
+import Nav from './Nav'
+import NewPost from './NewPost'
 
-  componentDidMount () {
-    this.props.dispatch(fetchFruits())
-  }
-
-  render () {
+function App () {
     return (
+      <Router>
       <div className='app'>
-        <h1>Fullstack Boilerplate - with Fruits!</h1>
-        <ul>
-          {this.props.fruits.map(fruit => (
-            <li key={fruit}>{fruit}</li>
-          ))}
-        </ul>
+        <Nav />
+        <Route path='/' exact={true} component={Home} />
+        <Route path="/newPost" component={NewPost} />
       </div>
+      </Router>
     )
-  }
 }
 
 function mapStateToProps (globalState) {
   return {
-    fruits: globalState.fruits
   }
 }
 

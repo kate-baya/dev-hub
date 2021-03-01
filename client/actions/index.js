@@ -1,6 +1,8 @@
+import { getPosts } from '../apis/blog'
 import { getFruits } from '../apis/fruits'
 
 export const SET_FRUITS = 'SET_FRUITS'
+export const SET_POSTS = 'SET_POSTS'
 
 export function setFruits (fruits) {
   return {
@@ -16,5 +18,13 @@ export function fetchFruits () {
         dispatch(setFruits(fruits))
         return null
       })
+  }
+}
+
+
+export function setPosts (blog) {
+  return {
+    type: SET_POSTS,
+    blog
   }
 }
