@@ -14,22 +14,19 @@ function Nav (props) {
       props.dispatch(setPosts(posts))
     })
   },[])
-
-  console.log(props.blog[0])
   
   return (
 <div>
-  {console.log('rendered')}
     <div className="nav">
       <h1>Dev-Hub</h1>
       <Link to="/newPost"><button type="button">New Blog</button></Link>
     </div>
-      <ul>
-      {props.blog.map((post, i) => {
-        return <li key={i}>{post.title}</li>
-      })}
-      </ul>
-      </div>
+      {props.blog.map((post) => {
+        return <p key={post.id}>
+        <Link to={`/blogPost/${post.id}`}>{post.title}</Link>
+          </p>
+      })}      
+    </div>
   )
 }
 
