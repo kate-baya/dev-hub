@@ -16,16 +16,17 @@ function Nav (props) {
   },[])
   
   return (
-<div>
+    <div>
     <div className="nav">
-      <h1>Dev-Hub</h1>
-      <Link to="/newPost"><button type="button">New Blog</button></Link>
+      <h3 className="recentPosts">Recent Posts</h3>
+      <div className="blogList">
+        {props.blog.map((post) => {
+          return <p key={post.id}>
+          <Link to={`/blogPost/${post.id}`}>{post.title}</Link>
+            </p>
+        })}
+      </div>      
     </div>
-      {props.blog.map((post) => {
-        return <p key={post.id}>
-        <Link to={`/blogPost/${post.id}`}>{post.title}</Link>
-          </p>
-      })}      
     </div>
   )
 }
