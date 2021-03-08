@@ -22,7 +22,6 @@ class BlogPost extends React.Component {
 }
 
 function mapStateToProps (globalState) {
-  console.log('rendered')
   return {
     blog: globalState.blog
   }
