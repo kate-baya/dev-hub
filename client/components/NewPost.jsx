@@ -23,10 +23,14 @@ const handleSubmit = e => {
     <div className="newPost">
       <h2>New Blog Post</h2>
       <form onSubmit={handleSubmit}>
-        <label>Title</label>
-        <input type="text" name='title' value={state.title} onChange={handleChange}></input>
-        <label>Text</label>
-        <input type='text' name='post' value={state.post} onChange={handleChange}></input>
+        <div>
+        <label>Title:</label>
+        <input type="text" name='title'  value={state.title} onChange={handleChange}></input>
+        </div>
+        <div>
+        <label>Text:</label>
+        <textarea type='text' name='post' value={state.post} onChange={handleChange}></textarea>
+        </div>
         <input type='submit' value='Post'></input>
       </form>
     </div>
