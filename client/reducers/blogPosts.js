@@ -2,7 +2,7 @@ import {SET_POSTS} from '../actions'
 
 const initialState = []
 
-const reducer = (state = initialState, action) => {
+const blogPosts = (state = initialState, action) => {
   switch(action.type) {
     case SET_POSTS:
       return action.blog
@@ -12,4 +12,4 @@ const reducer = (state = initialState, action) => {
   }
 }
 
-export default reducer
+export default blogPosts

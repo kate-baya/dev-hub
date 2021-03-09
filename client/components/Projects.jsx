@@ -12,20 +12,19 @@ function Projects (props) {
     })
   }, [])
 
-  console.log(props.projects)
+  console.log(props)
 
   return (
     <div>
       <h3>Project List</h3>
       {props.projects.map(project => {
-        return <p key={project.id}>{project.project_title}</p>
+        return <p key={project.id}>{project.title}</p>
       })}
     </div>
   )
 }
 
 const mapStateToProps = (globalState) => {
-  console.log(globalState)
   return {
     projects: globalState.projects
   }

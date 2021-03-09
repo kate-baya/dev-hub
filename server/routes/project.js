@@ -17,7 +17,7 @@ router.post('/newProject', (req, res) => {
   })
 })
 
-router.get('/', (req, res) => {
+router.get('/projects', (req, res) => {
   db.getProjects()
   .then(projects => {
     res.json(projects)

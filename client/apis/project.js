@@ -7,12 +7,13 @@ export function createNewProject (project) {
   .post(`${rootUrl}/newProject`)
   .send(project)
   .then(res => {
+    console.log(res)
     return res.body
   })
 }
 
 export function getProjects() {
   return request
-  .get(rootUrl)
+  .get(`${rootUrl}/projects`)
     .then(res => res.body)
 }
