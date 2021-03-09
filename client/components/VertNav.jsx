@@ -8,6 +8,7 @@ function VertNav () {
         <Link to='/'><p>Home</p></Link>
         <Link to="/newPost"><p>New Blog</p></Link>
         <Link to="/newProject"><p>New Project</p></Link>
+        <Link to='/projects'>Project List</Link>
       </div>
   )
 }

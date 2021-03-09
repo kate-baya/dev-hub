@@ -10,3 +10,9 @@ export function createNewProject (project) {
     return res.body
   })
 }
+
+export function getProjects() {
+  return request
+  .get(rootUrl)
+    .then(res => res.body)
+}

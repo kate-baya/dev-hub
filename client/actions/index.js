@@ -1,8 +1,8 @@
-import { getPosts } from '../apis/blog'
 import { getFruits } from '../apis/fruits'
 
 export const SET_FRUITS = 'SET_FRUITS'
 export const SET_POSTS = 'SET_POSTS'
+export const SET_PROJECTS = 'SET_PROJECTS'
 
 export function setFruits (fruits) {
   return {
@@ -21,10 +21,16 @@ export function fetchFruits () {
   }
 }
 
-
 export function setPosts (blog) {
   return {
     type: SET_POSTS,
     blog
+  }
+}
+
+export function setProjects (projects) {
+  return {
+    type: SET_PROJECTS,
+    projects
   }
 }

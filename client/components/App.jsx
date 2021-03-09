@@ -8,8 +8,9 @@ import NewPost from './NewPost'
 import BlogPost from './BlogPost'
 import VertNav from './VertNav'
 import NewProject from './NewProject'
+import Projects from './Projects'
 
-function App (props) {
+function App () {
     return (
       <Router>
       <div className='app'>
@@ -21,6 +22,7 @@ function App (props) {
         <Route path="/newPost" component={NewPost} />
         <Route path="/blogPost/:id" component={BlogPost} />
         <Route path='/newProject' component={NewProject} />
+        <Route path='/projects' component={Projects} />
         </div>
         </div>
       </div>

@@ -5,6 +5,12 @@ function saveProject (project, db = connection) {
   .insert(project)
 }
 
+function getProjects (db = connection) {
+  return db('projects')
+  .select()
+}
+
 module.exports = {
-  saveProject
+  saveProject,
+  getProjects
 }

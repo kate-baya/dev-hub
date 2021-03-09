@@ -17,4 +17,16 @@ router.post('/newProject', (req, res) => {
   })
 })
 
+router.get('/', (req, res) => {
+  db.getProjects()
+  .then(projects => {
+    res.json(projects)
+    return null
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({message: 'This route is not working correctly'})
+  })
+})
+
 module.exports = router
