@@ -15,12 +15,11 @@ const handleChange = (e) => {
 
 const handleSubmit = e => {
   e.preventDefault()
-  console.log(state)
   saveBlog(state)
 }
 
   return (
-    <div className="newPost">
+    <div className="new">
       <h2>New Blog Post</h2>
       <form onSubmit={handleSubmit}>
         <div>

@@ -5,7 +5,9 @@ function VertNav () {
   return (
       <div className="vertNav">
         <h1>Dev-Hub</h1>
-        <Link to="/newPost"><button type="button">New Blog</button></Link>
+        <Link to='/'><p>Home</p></Link>
+        <Link to="/newPost"><p>New Blog</p></Link>
+        <Link to="/newProject"><p>New Project</p></Link>
       </div>
   )
 }

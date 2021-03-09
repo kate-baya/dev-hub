@@ -7,20 +7,20 @@ import Nav from './Nav'
 import NewPost from './NewPost'
 import BlogPost from './BlogPost'
 import VertNav from './VertNav'
+import NewProject from './NewProject'
 
 function App (props) {
     return (
       <Router>
       <div className='app'>
-
         <VertNav />
-       
         <div className="mainModule">
         <Nav />
         <div className='home'>
         <Route path='/' exact={true} component={Home} />
         <Route path="/newPost" component={NewPost} />
         <Route path="/blogPost/:id" component={BlogPost} />
+        <Route path='/newProject' component={NewProject} />
         </div>
         </div>
       </div>
