@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react'
+import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {getProjects} from '../apis/project'
 import {setProjects} from '../actions'
@@ -12,13 +13,11 @@ function Projects (props) {
     })
   }, [])
 
-  console.log(props)
-
   return (
     <div>
       <h3>Project List</h3>
       {props.projects.map(project => {
-        return <p key={project.id}>{project.title}</p>
+        return <Link to={`/projects/${project.id}`} key={project.id}><p>{project.title}</p></Link>
       })}
     </div>
   )

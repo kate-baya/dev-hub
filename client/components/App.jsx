@@ -9,6 +9,7 @@ import BlogPost from './BlogPost'
 import VertNav from './VertNav'
 import NewProject from './NewProject'
 import Projects from './Projects'
+import Project from './Project'
 
 function App () {
     return (
@@ -22,7 +23,8 @@ function App () {
         <Route path="/newPost" component={NewPost} />
         <Route path="/blogPost/:id" component={BlogPost} />
         <Route path='/newProject' component={NewProject} />
-        <Route path='/projects' component={Projects} />
+        <Route path='/projects' exact={true} component={Projects} />
+        <Route path='/projects/:id' component={Project} />
         </div>
         </div>
       </div>
