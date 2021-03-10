@@ -11,7 +11,6 @@ export function getPosts () {
 }
 
 export function saveBlog (blogPost) {
-  console.log(blogPost)
   return request
     .post(`${rootUrl}/addBlog`)
     .send(blogPost)

@@ -4,6 +4,7 @@ exports.up = function(knex) {
     table.increments('id')
     table.string('title')
     table.string('post')
+    table.string('project_id')
   })
 };
 

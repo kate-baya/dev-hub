@@ -11,5 +11,5 @@ function savePost (post, db = connection) {
 
 module.exports = {
   getPosts,
-  savePost
+  savePost,
 }
