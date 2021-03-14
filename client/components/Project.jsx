@@ -1,5 +1,6 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 
 class Project extends React.Component {
   findProject = () => {
@@ -23,8 +24,9 @@ class Project extends React.Component {
         <p>{project.about}</p>
         <div>
           <h4>Project blogs</h4>
+          <Link to={`/newProjectPost/${project.id}`}><p>Create Post</p></Link>
           {blogs.map(blog => {
-            return <p key={blog.id}>{blog.title}</p>
+            return <Link to={`/blogPost/${blog.id}`}key={blog.id}><p>{blog.title}</p></Link>
           })}
         </div>
       </div>
@@ -33,6 +35,7 @@ class Project extends React.Component {
 }
 
 function mapStateToProps (globalState) {
+  console.log(globalState)
   return {
     projects: globalState.projects,
     blog: globalState.blog

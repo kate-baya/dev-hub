@@ -10,6 +10,7 @@ import VertNav from './VertNav'
 import NewProject from './NewProject'
 import Projects from './Projects'
 import Project from './Project'
+import NewProjectBlogPost from './NewProjectBlogPost'
 
 function App () {
     return (
@@ -25,6 +26,7 @@ function App () {
         <Route path='/newProject' component={NewProject} />
         <Route path='/projects' exact={true} component={Projects} />
         <Route path='/projects/:id' component={Project} />
+        <Route path="/newProjectPost/:id" component={NewProjectBlogPost} />
         </div>
         </div>
       </div>
