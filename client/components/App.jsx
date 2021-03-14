@@ -2,7 +2,9 @@ import React,{useEffect, useState} from 'react'
 import { connect } from 'react-redux'
 import {HashRouter as Router, Route} from 'react-router-dom'
 import { GoogleLogin, GoogleLogout } from 'react-google-login'
+import {fetchUser} from '../actions'
 
+import UnAuthHome from './UnAuthHome'
 import Home from './Home'
 import RecentPosts from './RecentPosts'
 import NewPost from './NewPost'
@@ -10,10 +12,11 @@ import BlogPost from './BlogPost'
 import NavBar from './NavBar'
 import NewProject from './NewProject'
 import UserProjects from './UserProjects'
-import Project from './Project'
+import UserProject from './UserProject'
 import NewProjectBlogPost from './NewProjectBlogPost'
+import UnAuthNavBar from './UnAuthNavBar'
 
-function App () {
+function App (props) {
 
   const [isAuthenticated, setIsAuthenticated] = useState(false)
 
@@ -33,6 +36,7 @@ function App () {
   useEffect(() => {
     if (user.email.length > 0 || user.name.length > 0)
       setIsAuthenticated(true)
+      props.dispatch(fetchUser(user))
   }, [user])
 
   const logout = () => {
@@ -61,12 +65,12 @@ function App () {
       <div className="mainModule">
       <RecentPosts />
       <div className='home'>
-      <Route path='/' exact={true} component={Home} />
+      <Route path='/' exact={true} render={(user) => (<Home user={user} component={Home} />)} />
       <Route path="/blogPost/:id" component={BlogPost} />
       <Route path="/newPost" component={NewPost} />
       <Route path='/newProject' component={NewProject} />
       <Route path='/userProjects' exact={true} component={UserProjects} />
-      <Route path='/userProjects/:id' component={Project} />
+      <Route path='/userProjects/:id' component={UserProject} />
       <Route path="/newProjectPost/:id" component={NewProjectBlogPost} />
       </div>
       </div>
@@ -81,12 +85,10 @@ const UnAuthenticatedView = ({responseGoogle}) => {
   return (
   <div className='unAuthenticated'>
       <Router>
-      <NavBar />
+      <UnAuthNavBar />
     <div className="mainModule">
       <RecentPosts />
       <div className='home'>
-      <Route path='/' exact={true} component={Home} />
-      <h4>To create projects and posts, please login</h4>
       <GoogleLogin
       clientId="1024724715081-t0plpqqmnkrqvoit0700ul3kn2ken5ci.apps.googleusercontent.com"
       buttonText="Login"
@@ -95,6 +97,7 @@ const UnAuthenticatedView = ({responseGoogle}) => {
       isSignedIn={true}
       cookiePolicy={'single_host_origin'}
       />
+      <Route path='/' exact={true} component={UnAuthHome} />
       <Route path="/blogPost/:id" component={BlogPost} />
       </div>
     </div>
