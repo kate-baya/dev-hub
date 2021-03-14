@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 
-class Project extends React.Component {
+class UserProject extends React.Component {
   findProject = () => {
     return this.props.projects.find(project => {
       return project.id == this.props.match.params.id
@@ -42,4 +42,4 @@ function mapStateToProps (globalState) {
   }
 }
 
-export default connect(mapStateToProps)(Project)
+export default connect(mapStateToProps)(UserProject)
