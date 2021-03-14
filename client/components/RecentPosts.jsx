@@ -6,7 +6,7 @@ import {setPosts} from '../actions'
 import {getPosts} from '../apis/blog'
 
 
-function Nav (props) {
+function RecentPosts (props) {
   
   useEffect(() => {
     getPosts()
@@ -17,7 +17,7 @@ function Nav (props) {
   
   return (
     <div>
-    <div className="nav">
+    <div className="sideBar">
       <h3 className="recentPosts">Recent Posts</h3>
       <div className="blogList">
         {props.blog.map((post) => {
@@ -37,4 +37,4 @@ function mapStateToProps (globalState) {
   }
 }
 
-export default connect(mapStateToProps)(Nav)
+export default connect(mapStateToProps)(RecentPosts)

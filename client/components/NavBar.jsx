@@ -1,16 +1,16 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 
-function VertNav () {
+function NavBar () {
   return (
-      <div className="vertNav">
+      <div className="navBar">
         <h1>Dev-Hub</h1>
         <Link to='/'><p>Home</p></Link>
         <Link to="/newPost"><p>New Blog</p></Link>
         <Link to="/newProject"><p>New Project</p></Link>
-        <Link to='/projects'>Project List</Link>
+        <Link to='/userProjects'>Project List</Link>
       </div>
   )
 }
 
-export default VertNav
+export default NavBar

@@ -4,12 +4,12 @@ import {HashRouter as Router, Route} from 'react-router-dom'
 import { GoogleLogin, GoogleLogout } from 'react-google-login'
 
 import Home from './Home'
-import Nav from './Nav'
+import RecentPosts from './RecentPosts'
 import NewPost from './NewPost'
 import BlogPost from './BlogPost'
-import VertNav from './VertNav'
+import NavBar from './NavBar'
 import NewProject from './NewProject'
-import Projects from './Projects'
+import UserProjects from './UserProjects'
 import Project from './Project'
 import NewProjectBlogPost from './NewProjectBlogPost'
 
@@ -57,16 +57,16 @@ function App () {
       buttonText="Logout"
       onLogoutSuccess={logout}
     />
-      <VertNav />
+      <NavBar />
       <div className="mainModule">
-      <Nav />
+      <RecentPosts />
       <div className='home'>
       <Route path='/' exact={true} component={Home} />
       <Route path="/blogPost/:id" component={BlogPost} />
       <Route path="/newPost" component={NewPost} />
       <Route path='/newProject' component={NewProject} />
-      <Route path='/projects' exact={true} component={Projects} />
-      <Route path='/projects/:id' component={Project} />
+      <Route path='/userProjects' exact={true} component={UserProjects} />
+      <Route path='/userProjects/:id' component={Project} />
       <Route path="/newProjectPost/:id" component={NewProjectBlogPost} />
       </div>
       </div>
@@ -80,6 +80,9 @@ function App () {
 const UnAuthenticatedView = ({responseGoogle}) => {
   return (
   <div className='unAuthenticated'>
+      <Router>
+    <div className='home'>
+      <Route path='/' exact={true} component={Home} />
     <GoogleLogin
     clientId="1024724715081-t0plpqqmnkrqvoit0700ul3kn2ken5ci.apps.googleusercontent.com"
     buttonText="Login"
@@ -88,6 +91,8 @@ const UnAuthenticatedView = ({responseGoogle}) => {
     isSignedIn={true}
     cookiePolicy={'single_host_origin'}
     />
+    </div>
+    </Router>
   </div>
   )
 }
