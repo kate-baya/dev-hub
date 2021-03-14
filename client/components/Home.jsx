@@ -1,12 +1,22 @@
 import React from 'react'
+import {connect} from 'react-redux'
 
 function Home (props) {
-  console.log(props)
+
+  console.log(props.user)
+
   return (
     <div>
-      <p>home</p>
+      <img src={props.user.image}/>
+      <p>Welcome {props.user.name}!</p>
     </div>
   )
 }
 
-export default Home
+const mapStateToProps = (globalState) => {
+  return {
+    user: globalState.user
+  }
+}
+
+export default connect(mapStateToProps)(Home)
