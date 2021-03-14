@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import {getProjects} from '../apis/project'
 import {setProjects} from '../actions'
 
-function Projects (props) {
+function UserProjects (props) {
 
   useEffect(() => {
     getProjects()
@@ -17,7 +17,7 @@ function Projects (props) {
     <div>
       <h3>Project List</h3>
       {props.projects.map(project => {
-        return <Link to={`/projects/${project.id}`} key={project.id}><p>{project.title}</p></Link>
+        return <Link to={`/userProjects/${project.id}`} key={project.id}><p>{project.title}</p></Link>
       })}
     </div>
   )
@@ -29,4 +29,4 @@ const mapStateToProps = (globalState) => {
   }
 }
 
-export default connect(mapStateToProps)(Projects)
+export default connect(mapStateToProps)(UserProjects)

@@ -1,6 +1,6 @@
 import request from 'superagent'
 
-const rootUrl = 'http://localhost:3000/api/v1'
+const rootUrl = 'http://localhost:3001/api/v1'
 
 export function getPosts () {
   return request
