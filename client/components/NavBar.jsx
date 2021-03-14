@@ -8,7 +8,7 @@ function NavBar () {
         <Link to='/'><p>Home</p></Link>
         <Link to="/newPost"><p>New Blog</p></Link>
         <Link to="/newProject"><p>New Project</p></Link>
-        <Link to='/userProjects'>Project List</Link>
+        <Link to='/userProjects'>My Projects</Link>
       </div>
   )
 }

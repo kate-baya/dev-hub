@@ -81,16 +81,22 @@ const UnAuthenticatedView = ({responseGoogle}) => {
   return (
   <div className='unAuthenticated'>
       <Router>
-    <div className='home'>
+      <NavBar />
+    <div className="mainModule">
+      <RecentPosts />
+      <div className='home'>
       <Route path='/' exact={true} component={Home} />
-    <GoogleLogin
-    clientId="1024724715081-t0plpqqmnkrqvoit0700ul3kn2ken5ci.apps.googleusercontent.com"
-    buttonText="Login"
-    onSuccess={responseGoogle}
-    onFailure={responseGoogle}
-    isSignedIn={true}
-    cookiePolicy={'single_host_origin'}
-    />
+      <h4>To create projects and posts, please login</h4>
+      <GoogleLogin
+      clientId="1024724715081-t0plpqqmnkrqvoit0700ul3kn2ken5ci.apps.googleusercontent.com"
+      buttonText="Login"
+      onSuccess={responseGoogle}
+      onFailure={responseGoogle}
+      isSignedIn={true}
+      cookiePolicy={'single_host_origin'}
+      />
+      <Route path="/blogPost/:id" component={BlogPost} />
+      </div>
     </div>
     </Router>
   </div>
