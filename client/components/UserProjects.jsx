@@ -11,7 +11,7 @@ function UserProjects (props) {
     .then(projects => {
       props.dispatch(setProjects(projects))
     })
-  }, [])
+  })
 
   return (
     <div>

@@ -1,4 +1,5 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
+import {connect} from 'react-redux'
 import {saveBlog} from '../apis/blog'
 
 function NewProjectBlogPost(props) {
@@ -16,7 +17,7 @@ function NewProjectBlogPost(props) {
 
   const handleSubmit = e => {
     e.preventDefault()
-    saveBlog(state)
+    saveBlog(props.user.id, state)
   }
   
     return (
@@ -33,4 +34,10 @@ function NewProjectBlogPost(props) {
     )
 }
 
-export default NewProjectBlogPost
+const mapStateToProps = (globalState) => {
+  return {
+    user: globalState.user
+  }
+}
+
+export default connect (mapStateToProps)(NewProjectBlogPost)

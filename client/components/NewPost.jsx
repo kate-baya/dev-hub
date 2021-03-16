@@ -5,7 +5,8 @@ import { saveBlog } from '../apis/blog'
 function NewPost (props) {
 const [state, setState] = useState({
   title: '',
-  post: ''
+  post: '',
+  project_id: '0'
 })
 
 const handleChange = (e) => {
@@ -15,7 +16,7 @@ const handleChange = (e) => {
 
 const handleSubmit = e => {
   e.preventDefault()
-  saveBlog(state)
+  saveBlog(props.user.id, state)
 }
 
   return (
@@ -36,4 +37,10 @@ const handleSubmit = e => {
   )
 }
 
-export default connect ()(NewPost)
+const mapStateToProps = (globalState) => {
+  return {
+    user: globalState.user
+  }
+}
+
+export default connect (mapStateToProps)(NewPost)

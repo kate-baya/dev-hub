@@ -13,7 +13,7 @@ function RecentPosts (props) {
     .then(posts => {
       props.dispatch(setPosts(posts))
     })
-  },[])
+  })
   
   return (
     <div>
