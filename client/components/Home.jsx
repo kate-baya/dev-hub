@@ -3,8 +3,6 @@ import {connect} from 'react-redux'
 
 function Home (props) {
 
-  console.log(props.user)
-
   return (
     <div>
       <img src={props.user.image}/>

@@ -5,10 +5,11 @@ const db = require('../db/projects')
 const router = express.Router()
 
 router.post('/newProject', (req, res) => {
-  const project = req.body
-  db.saveProject(project)
-  .then(project => {
-    res.status(201).json(project)
+  const {project, user_id} = req.body
+  const {title, about} = project
+  db.saveProject(title, about, user_id)
+  .then(newProject => {
+    res.status(201).json(newProject)
     return null
   })
   .catch(err => {

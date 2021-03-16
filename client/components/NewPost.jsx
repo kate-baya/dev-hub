@@ -5,13 +5,12 @@ import { saveBlog } from '../apis/blog'
 function NewPost (props) {
 const [state, setState] = useState({
   title: '',
-  post: '',
-  project_id: ''
+  post: ''
 })
 
 const handleChange = (e) => {
   const {name, value} = e.target
-  return setState({...state,  project_id: '0', [name]: value})
+  return setState({...state, [name]: value})
 }
 
 const handleSubmit = e => {

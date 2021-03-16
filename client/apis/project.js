@@ -2,10 +2,11 @@ import request from 'superagent'
 
 const rootUrl = 'http://localhost:3001/api/v1'
 
-export function createNewProject (project) {
+export function createNewProject (project, user_id) {
+  console.log(project, user_id)
   return request
   .post(`${rootUrl}/newProject`)
-  .send(project)
+  .send({project, user_id})
   .then(res => {
     console.log(res)
     return res.body
