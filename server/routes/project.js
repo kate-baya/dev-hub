@@ -30,4 +30,17 @@ router.get('/projects', (req, res) => {
   })
 })
 
+router.get('/projects/:id', (req, res) => {
+  const userId = req.params.id
+  db.getUserProjects(userId)
+  .then(projects => {
+    res.json(projects)
+    return null
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({message: 'This route is not working correctly'})
+  })
+})
+
 module.exports = router

@@ -10,7 +10,14 @@ function getProjects (db = connection) {
   .select()
 }
 
+function getUserProjects (userId, db = connection) {
+  return db('projects')
+  .select()
+  .where('user_id', userId)
+}
+
 module.exports = {
   saveProject,
-  getProjects
+  getProjects,
+  getUserProjects
 }

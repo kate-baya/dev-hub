@@ -1,13 +1,13 @@
 import React, {useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {getProjects} from '../apis/project'
+import {getUserProjects} from '../apis/project'
 import {setProjects} from '../actions'
 
 function UserProjects (props) {
 
   useEffect(() => {
-    getProjects()
+    getUserProjects(props.user.id)
     .then(projects => {
       props.dispatch(setProjects(projects))
     })
@@ -25,7 +25,8 @@ function UserProjects (props) {
 
 const mapStateToProps = (globalState) => {
   return {
-    projects: globalState.projects
+    projects: globalState.projects,
+    user: globalState.user
   }
 }
 

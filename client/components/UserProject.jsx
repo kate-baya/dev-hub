@@ -39,7 +39,6 @@ class UserProject extends React.Component {
 }
 
 function mapStateToProps (globalState) {
-  console.log(globalState)
   return {
     projects: globalState.projects,
     blog: globalState.blog

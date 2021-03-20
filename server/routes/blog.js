@@ -19,7 +19,6 @@ router.get('/', (req, res) => {
 router.post('/addBlog', (req, res) => {
   const {blogPost, user_id} = req.body
   const {title, post, project_id} = blogPost
-  console.log(req.body)
   db.savePost( user_id, title, post, project_id)
   .then(newPost => {
     res.status(201).json(newPost)
