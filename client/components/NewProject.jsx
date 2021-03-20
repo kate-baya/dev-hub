@@ -1,7 +1,8 @@
 import React, {useState} from 'react'
+import {connect} from 'react-redux'
 import {createNewProject} from '../apis/project'
 
-function NewProject () {
+function NewProject (props) {
 
   const [state, setState] = useState({
     title: 'Title',
@@ -15,7 +16,7 @@ function NewProject () {
 
   const handleSubmit = e => {
     e.preventDefault()
-    createNewProject(state)
+    createNewProject(state, props.user.id)
   }
 
   return (
@@ -32,4 +33,10 @@ function NewProject () {
   )
 }
 
-export default NewProject
+const mapStateToProps = (globalState) => {
+  return {
+    user: globalState.user
+  }
+}
+
+export default connect(mapStateToProps)(NewProject)

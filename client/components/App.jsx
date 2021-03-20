@@ -65,7 +65,7 @@ function App (props) {
       <div className="mainModule">
       <RecentPosts />
       <div className='home'>
-      <Route path='/' exact={true} render={(user) => (<Home user={user} component={Home} />)} />
+      <Route path='/' exact={true} component={Home}/>
       <Route path="/blogPost/:id" component={BlogPost} />
       <Route path="/newPost" component={NewPost} />
       <Route path='/newProject' component={NewProject} />

@@ -14,6 +14,10 @@ class UserProject extends React.Component {
       return blog.project_id == this.props.match.params.id
     })
   }
+
+  componentDidMount(){
+    this.filterProjectBlogPosts()
+  }
   
   render () {
     const project = this.findProject()
@@ -35,7 +39,6 @@ class UserProject extends React.Component {
 }
 
 function mapStateToProps (globalState) {
-  console.log(globalState)
   return {
     projects: globalState.projects,
     blog: globalState.blog

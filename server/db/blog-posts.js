@@ -4,9 +4,9 @@ function getPosts (db = connection) {
   return db('blog-posts').select()
 }
 
-function savePost (post, db = connection) {
+function savePost (user_id, title, post, project_id, db = connection) {
   return db('blog-posts')
-  .insert(post)
+  .insert(user_id, title, post, project_id)
 }
 
 module.exports = {

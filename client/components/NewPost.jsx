@@ -6,17 +6,17 @@ function NewPost (props) {
 const [state, setState] = useState({
   title: '',
   post: '',
-  project_id: ''
+  project_id: '0'
 })
 
 const handleChange = (e) => {
   const {name, value} = e.target
-  return setState({...state,  project_id: '0', [name]: value})
+  return setState({...state, [name]: value})
 }
 
 const handleSubmit = e => {
   e.preventDefault()
-  saveBlog(state)
+  saveBlog(props.user.id, state)
 }
 
   return (
@@ -37,4 +37,10 @@ const handleSubmit = e => {
   )
 }
 
-export default connect ()(NewPost)
+const mapStateToProps = (globalState) => {
+  return {
+    user: globalState.user
+  }
+}
+
+export default connect (mapStateToProps)(NewPost)

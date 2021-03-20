@@ -14,7 +14,7 @@ class BlogPost extends React.Component {
 
     return (
       <div className="blogPost">
-      <h2>{blog.title}</h2>
+      <h2 class='subtitle'>{blog.title}</h2>
       <p>{blog.post}</p>
       </div>
     )
