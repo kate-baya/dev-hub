@@ -3,14 +3,22 @@ import { Link } from 'react-router-dom'
 
 function NavBar() {
   return (
-    <div className="navBar">
-      <img src="/images/truth.jpg" alt="" />
-      <h1>Dev-Hub</h1>
-      <Link to='/'><p>Home</p></Link>
-      <Link to="/newPost"><p>New Blog</p></Link>
-      <Link to="/newProject"><p>New Project</p></Link>
-      <Link to='/userProjects'>My Projects</Link>
-    </div>
+    <>
+      <Link to='/' className='navbar-item'>Home</Link>
+      <Link to='/userProjects' className="navbar-item">My Projects</Link>
+
+      <div className="navbar-item has-dropdown is-hoverable">
+        <a className="navbar-link">
+          Create
+              </a>
+
+        <div className="navbar-dropdown">
+          <Link to="/newPost" className="navbar-item"><p>Blog Post</p></Link>
+          <Link to="/newProject" className="navbar-item"><p>Project</p></Link>
+        </div>
+      </div>
+      
+    </>
   )
 }
 

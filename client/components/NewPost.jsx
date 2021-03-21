@@ -20,8 +20,8 @@ const handleSubmit = e => {
 }
 
   return (
-    <div className="new">
-      <h2>New Blog Post</h2>
+    <div className='hero-body'>
+      <h2 className='title'>New Blog Post</h2>
       <form onSubmit={handleSubmit}>
         <div>
         <label>Title:</label>

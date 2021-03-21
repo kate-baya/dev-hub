@@ -16,17 +16,13 @@ function RecentPosts (props) {
   })
   
   return (
-    <div>
-    <div className="sideBar">
-      <h3 className="recentPosts">Recent Posts</h3>
-      <div className="blogList">
+    <div className='hero-body'>
+      <p className='title'>Recent Posts</p>
         {props.blog.map((post) => {
           return <p key={post.id}>
           <Link to={`/blogPost/${post.id}`}>{post.title}</Link>
             </p>
         })}
-      </div>      
-    </div>
     </div>
   )
 }

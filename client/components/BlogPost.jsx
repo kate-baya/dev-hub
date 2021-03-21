@@ -13,8 +13,8 @@ class BlogPost extends React.Component {
     const blog = this.findBlog()
 
     return (
-      <div className="blogPost">
-      <h2 class='subtitle'>{blog.title}</h2>
+      <div className='hero-body'>
+      <h2 className='title'>{blog.title}</h2>
       <p>{blog.post}</p>
       </div>
     )
