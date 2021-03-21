@@ -4,9 +4,10 @@ import {connect} from 'react-redux'
 function Home (props) {
 
   return (
-    <div>
+    <div className='hero-body'>
       <img src={props.user.image}/>
-      <p>Welcome {props.user.name}!</p>
+      <p className='title'>Welcome {props.user.name}!</p>
+      <p className='subtitle'> Check out the latest blogs</p>
     </div>
   )
 }

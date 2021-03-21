@@ -1,8 +1,8 @@
-import React,{useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
-import {HashRouter as Router, Route} from 'react-router-dom'
+import { HashRouter as Router, Route, Link } from 'react-router-dom'
 import { GoogleLogin, GoogleLogout } from 'react-google-login'
-import {fetchUser} from '../actions'
+import { fetchUser } from '../actions'
 
 import UnAuthHome from './UnAuthHome'
 import Home from './Home'
@@ -12,15 +12,16 @@ import BlogPost from './BlogPost'
 import NavBar from './NavBar'
 import NewProject from './NewProject'
 import UserProjects from './UserProjects'
+import Projects from './UserProjects'
 import UserProject from './UserProject'
 import NewProjectBlogPost from './NewProjectBlogPost'
 import UnAuthNavBar from './UnAuthNavBar'
 
-function App (props) {
+function App(props) {
 
   const [isAuthenticated, setIsAuthenticated] = useState(false)
 
-  const [user, setUser] = useState({user_id: '', name: '', image: '', email: ''})
+  const [user, setUser] = useState({ user_id: '', name: '', image: '', email: '' })
 
   const responseGoogle = (response) => {
     const profile = response.getBasicProfile()
@@ -36,73 +37,100 @@ function App (props) {
   useEffect(() => {
     if (user.email.length > 0 || user.name.length > 0)
       setIsAuthenticated(true)
-      props.dispatch(fetchUser(user))
+    props.dispatch(fetchUser(user))
   }, [user])
 
   const logout = () => {
-    setUser({user_id: '', name: '', image: '', email: ''})
+    setUser({ user_id: '', name: '', image: '', email: '' })
     setIsAuthenticated(false)
   }
 
-    return (
-      <div className='app'>
-        {isAuthenticated ? <AuthenticatedView user={user} logout={logout}/> : <UnAuthenticatedView responseGoogle={responseGoogle} />}
-      </div>
-    )
-  }
-  
-  const AuthenticatedView = ({user, logout}) => {
-    return (
-    <div className='authenticated'>
-    <Router>
-    <div className='app'>
-    <GoogleLogout
-      clientId="1024724715081-t0plpqqmnkrqvoit0700ul3kn2ken5ci.apps.googleusercontent.com"
-      buttonText="Logout"
-      onLogoutSuccess={logout}
-    />
-      <NavBar />
-      <div className="mainModule">
-      <RecentPosts />
-      <div className='home'>
-      <Route path='/' exact={true} component={Home}/>
-      <Route path="/blogPost/:id" component={BlogPost} />
-      <Route path="/newPost" component={NewPost} />
-      <Route path='/newProject' component={NewProject} />
-      <Route path='/userProjects' exact={true} component={UserProjects} />
-      <Route path='/userProjects/:id' component={UserProject} />
-      <Route path="/newProjectPost/:id" component={NewProjectBlogPost} />
-      </div>
-      </div>
+  return (
+    <div>
+      {isAuthenticated ? <AuthenticatedView user={user} logout={logout} /> : <UnAuthenticatedView responseGoogle={responseGoogle} />}
     </div>
-    </Router>
-
-  </div>
   )
 }
 
-const UnAuthenticatedView = ({responseGoogle}) => {
+const AuthenticatedView = ({ user, logout }) => {
   return (
-  <div className='unAuthenticated'>
+    <>
       <Router>
-      <UnAuthNavBar />
-    <div className="mainModule">
-      <RecentPosts />
-      <div className='home'>
-      <GoogleLogin
-      clientId="1024724715081-t0plpqqmnkrqvoit0700ul3kn2ken5ci.apps.googleusercontent.com"
-      buttonText="Login"
-      onSuccess={responseGoogle}
-      onFailure={responseGoogle}
-      isSignedIn={true}
-      cookiePolicy={'single_host_origin'}
-      />
-      <Route path='/' exact={true} component={UnAuthHome} />
-      <Route path="/blogPost/:id" component={BlogPost} />
-      </div>
+        <nav className="navbar" role="navigation" aria-label="main navigation">
+          <div className="navbar-brand">
+            <Link to='/' className="navbar-item">
+              <img src='../images/devhub.png' alt="Dev-Hub: A blog site to journal your coding projects" width="112" height="28" />
+            </Link>
+          </div>
+
+          <div id="navbarBasicExample" className="navbar-menu">
+            <div className="navbar-start">
+              <NavBar />
+            </div>
+
+            <div className="navbar-end">
+              <div className="navbar-item">
+                <div className="buttons">
+                  <GoogleLogout
+                    clientId="1024724715081-t0plpqqmnkrqvoit0700ul3kn2ken5ci.apps.googleusercontent.com"
+                    buttonText="Logout"
+                    onLogoutSuccess={logout}
+                    className="button is-light" />
+                </div>
+              </div>
+            </div>
+    
+          </div>
+        </nav>
+
+        <section className="hero is-primary">
+          <div className="columns">
+            
+            <div className="column">
+              First column
+              <RecentPosts />
+            </div>
+            
+            <div className="column is-7">
+              <Route path='/' exact={true} component={Home} />
+              <Route path="/blogPost/:id" component={BlogPost} />
+              <Route path="/newPost" component={NewPost} />
+              <Route path='/newProject' component={NewProject} />
+              <Route path='/userProjects' exact={true} component={UserProjects} />
+              <Route path='/userProjects/:id' component={UserProject} />
+              <Route path="/newProjectPost/:id" component={NewProjectBlogPost} />
+              <Route path='/projects' exact={true} component={Projects} />
+            </div>
+
+            <div className="column">
+              Third column
+            </div>
+
+          </div>
+        </section>
+
+      </Router>
+    </>
+  )
+}
+
+const UnAuthenticatedView = ({ responseGoogle }) => {
+  return (
+    <div>
+      <Router>
+        <UnAuthNavBar />
+        <RecentPosts />
+        <GoogleLogin
+          clientId="1024724715081-t0plpqqmnkrqvoit0700ul3kn2ken5ci.apps.googleusercontent.com"
+          buttonText="Login"
+          onSuccess={responseGoogle}
+          onFailure={responseGoogle}
+          isSignedIn={true}
+          cookiePolicy={'single_host_origin'} />
+        <Route path='/' exact={true} component={UnAuthHome} />
+        <Route path="/blogPost/:id" component={BlogPost} />
+      </Router>
     </div>
-    </Router>
-  </div>
   )
 }
 

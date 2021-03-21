@@ -2,7 +2,6 @@ import React from 'react'
 import {connect} from 'react-redux'
 
 function Projects (props) {
-  console.log(props)
   return (
     props.projects.map(project => {
       return <Link to={`/projects/${project.id}`} key={project.id}><p>{project.title}</p><p>{project.about}</p></Link>

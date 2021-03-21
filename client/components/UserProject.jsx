@@ -23,9 +23,9 @@ class UserProject extends React.Component {
     const project = this.findProject()
     const blogs = this.filterProjectBlogPosts()
     return (
-      <div>
-        <h2>{project.title}</h2>
-        <p>{project.about}</p>
+      <div className='hero-body'>
+        <h2 className='title'>{project.title}</h2>
+        <p className='subtitle'>{project.about}</p>
         <div>
           <h4>Project blogs</h4>
           <Link to={`/newProjectPost/${project.id}`}><p>Create Post</p></Link>

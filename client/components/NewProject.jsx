@@ -20,8 +20,8 @@ function NewProject (props) {
   }
 
   return (
-    <div className='new'>
-    <h2>New Project</h2>
+    <div className='hero-body'>
+    <h2 className='title'>New Project</h2>
     <form onSubmit={handleSubmit}>
     <label>Title</label>
     <input type='text' name='title' value={state.title} onChange={handleChange}></input>
