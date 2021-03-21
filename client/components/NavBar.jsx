@@ -17,7 +17,6 @@ function NavBar() {
           <Link to="/newProject" className="navbar-item"><p>Project</p></Link>
         </div>
       </div>
-
       
     </>
   )
