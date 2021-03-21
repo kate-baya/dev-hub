@@ -23,7 +23,7 @@ class UserProject extends React.Component {
     const project = this.findProject()
     const blogs = this.filterProjectBlogPosts()
     return (
-      <div className='hero-body'>
+      <>
         <h2 className='title'>{project.title}</h2>
         <p className='subtitle'>{project.about}</p>
         <div>
@@ -33,7 +33,7 @@ class UserProject extends React.Component {
             return <Link to={`/blogPost/${blog.id}`}key={blog.id}><p>{blog.title}</p></Link>
           })}
         </div>
-      </div>
+      </>
     )
   }
 }

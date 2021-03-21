@@ -9,6 +9,14 @@ function NewProjectBlogPost(props) {
     post: '',
     project_id: ''
   })
+
+  console.log(props)
+
+  const project = props.projects.find(el => {
+    return el.id == props.match.params.id
+  })
+
+  console.log(project)
   
   const handleChange = (e) => {
     const {name, value} = e.target
@@ -21,21 +29,57 @@ function NewProjectBlogPost(props) {
   }
   
     return (
-      <div className='hero-body'>
-        <h2 className='title'>New Project Blog Post</h2>
-        <form onSubmit={handleSubmit}>
-          <label>Title:</label>
-          <input type="text" name='title'  value={state.title} onChange={handleChange}></input>
-          <label>Text:</label>
-          <textarea type='text' name='post' value={state.post} onChange={handleChange}></textarea>
-          <input type='submit' value='Post'></input>
-        </form>
-      </div>
+      <>
+        <h2 className='title'>{project.title}</h2>
+        <p className='subtitle'>Blog Post</p>
+        <form>
+        <div className="field is-horizontal">
+          <div className="field-label is-normal">
+            <label className="label">Title:</label>
+          </div>
+          <div className="field-body">
+            <div className="field">
+              <div className="control">
+                <input className="input" placeholder="Title of blog post" type="text" name='title' value={state.title} onChange={handleChange}></input>
+              </div>
+            </div>  
+          </div>
+        </div>    
+
+        <div className="field is-horizontal">  
+          <div className="field-label is-normal">   
+            <label className="label">Text:</label>
+          </div>
+          <div className="field-body">
+            <div className="field">
+              <div className="control">
+                <textarea className="textarea" placeholder="Write you blog post here!" type='text' name='post' value={state.post} onChange={handleChange}></textarea>
+              </div>
+            </div>
+          </div>
+        </div> 
+
+        <div className="field is-horizontal">          
+          <div className="field-label">
+          </div>  
+          <div className="field-body">
+            <div className="field">
+              <div className="control">
+                <button className="button is-primary" onClick={handleSubmit}>
+                  Post
+                </button>
+              </div>
+            </div>
+          </div>   
+        </div>
+      </form>
+      </>
     )
 }
 
 const mapStateToProps = (globalState) => {
   return {
+    projects: globalState.projects,
     user: globalState.user
   }
 }

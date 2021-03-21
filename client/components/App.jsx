@@ -57,6 +57,7 @@ const AuthenticatedView = ({ user, logout }) => {
     <>
       <Router>
         <nav className="navbar" role="navigation" aria-label="main navigation">
+          <div className='container'>
           <div className="navbar-brand">
             <Link to='/' className="navbar-item">
               <img src='../images/devhub.png' alt="Dev-Hub: A blog site to journal your coding projects" width="112" height="28" />
@@ -79,18 +80,20 @@ const AuthenticatedView = ({ user, logout }) => {
                 </div>
               </div>
             </div>
-    
+            </div>
           </div>
         </nav>
 
         <section className="hero is-primary">
+          <div className='hero-body'>
+            <div className='container'>
           <div className="columns">
             
             <div className="column">
               <RecentPosts />
             </div>
             
-            <div className="column is-7">
+            <div className="column is-7 has-background-info-dark">
               <Route path='/' exact={true} component={Home} />
               <Route path="/blogPost/:id" component={BlogPost} />
               <Route path="/newPost" component={NewPost} />
@@ -103,7 +106,8 @@ const AuthenticatedView = ({ user, logout }) => {
 
             <div className="column">
             </div>
-
+            </div>
+          </div>
           </div>
         </section>
 
@@ -117,6 +121,7 @@ const UnAuthenticatedView = ({ responseGoogle }) => {
     <>
       <Router>
         <nav className="navbar" role="navigation" aria-label="main navigation">
+        <div className='container'>
           <div className="navbar-brand">
             <Link to='/' className="navbar-item">
               <img src='../images/devhub.png' alt="Dev-Hub: A blog site to journal your coding projects" width="112" height="28" />
@@ -141,11 +146,13 @@ const UnAuthenticatedView = ({ responseGoogle }) => {
                 </div>
               </div>
             </div>
-    
+          </div>
           </div>
         </nav>
 
         <section className="hero is-primary">
+        <div className='hero-body'>
+            <div className='container'>
           <div className="columns">
             
             <div className="column">
@@ -159,7 +166,8 @@ const UnAuthenticatedView = ({ responseGoogle }) => {
 
             <div className="column">
             </div>
-
+            </div>
+            </div>
           </div>
         </section>
 

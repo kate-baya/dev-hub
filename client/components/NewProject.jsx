@@ -5,8 +5,8 @@ import {createNewProject} from '../apis/project'
 function NewProject (props) {
 
   const [state, setState] = useState({
-    title: 'Title',
-    about: 'Tell everyone a little about your project!'
+    title: '',
+    about: ''
   })
 
   const handleChange = e => {
@@ -20,16 +20,50 @@ function NewProject (props) {
   }
 
   return (
-    <div className='hero-body'>
+    <>
     <h2 className='title'>New Project</h2>
-    <form onSubmit={handleSubmit}>
-    <label>Title</label>
-    <input type='text' name='title' value={state.title} onChange={handleChange}></input>
-    <label>About</label>
-    <textarea type='text' name='about' value={state.about} onChange={handleChange}></textarea>
-    <input type='submit' value="Create Project"></input>
-    </form>
-    </div>
+      <form>
+        <div className="field is-horizontal">
+          <div className="field-label is-normal">
+            <label className="label">Title</label>
+          </div>
+          <div className="field-body">
+            <div className="field">
+              <div className="control">
+                <input className='input' placeholder="Project title" type='text' name='title' value={state.title} onChange={handleChange}></input>
+              </div>
+            </div>  
+          </div>
+        </div>  
+
+        <div className="field is-horizontal">  
+          <div className="field-label is-normal">   
+            <label className="label">About</label>
+          </div>  
+          <div className="field-body">
+            <div className="field">
+              <div className="control">
+                <textarea className='input' placeholder="Tell everyone a little about your project!"  type='text' name='about' value={state.about} onChange={handleChange}></textarea>
+              </div>
+            </div>
+          </div>
+        </div> 
+
+        <div className="field is-horizontal">          
+          <div className="field-label">
+          </div>  
+            <div className="field-body">
+              <div className="field">
+                <div className="control">
+                  <button className="button is-primary" onClick={handleSubmit}>
+                    Create Project
+                  </button>
+                </div>
+              </div>
+            </div>   
+          </div>    
+        </form>
+    </>
   )
 }
 

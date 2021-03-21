@@ -14,12 +14,12 @@ function UserProjects (props) {
   })
 
   return (
-    <div className='hero-body'>
+    <>
       <h3 className='title'>Project List</h3>
       {props.projects.map(project => {
         return <Link to={`/userProjects/${project.id}`} key={project.id}><p>{project.title}</p></Link>
       })}
-    </div>
+    </>
   )
 }
 
