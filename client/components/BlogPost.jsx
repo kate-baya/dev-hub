@@ -14,8 +14,12 @@ class BlogPost extends React.Component {
 
     return (
       <>
-          <h2 className='title'>{blog.title}</h2>
-          <p>{blog.post}</p>
+      <div class="tile is-ancestor">
+      <div className="tile is-vertical  is-child notification is-danger">
+          <p className='title is-4'>{blog.title}</p>
+          <p className='wrap'>{blog.post}</p>
+          </div>
+          </div>
       </>
     )
   }

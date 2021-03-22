@@ -34,9 +34,6 @@ function NewProjectBlogPost(props) {
         <p className='subtitle'>Blog Post</p>
         <form>
         <div className="field is-horizontal">
-          <div className="field-label is-normal">
-            <label className="label">Title:</label>
-          </div>
           <div className="field-body">
             <div className="field">
               <div className="control">
@@ -47,9 +44,6 @@ function NewProjectBlogPost(props) {
         </div>    
 
         <div className="field is-horizontal">  
-          <div className="field-label is-normal">   
-            <label className="label">Text:</label>
-          </div>
           <div className="field-body">
             <div className="field">
               <div className="control">
@@ -60,8 +54,6 @@ function NewProjectBlogPost(props) {
         </div> 
 
         <div className="field is-horizontal">          
-          <div className="field-label">
-          </div>  
           <div className="field-body">
             <div className="field">
               <div className="control">

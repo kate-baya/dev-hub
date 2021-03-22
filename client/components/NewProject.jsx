@@ -24,9 +24,6 @@ function NewProject (props) {
     <h2 className='title'>New Project</h2>
       <form>
         <div className="field is-horizontal">
-          <div className="field-label is-normal">
-            <label className="label">Title</label>
-          </div>
           <div className="field-body">
             <div className="field">
               <div className="control">
@@ -37,9 +34,6 @@ function NewProject (props) {
         </div>  
 
         <div className="field is-horizontal">  
-          <div className="field-label is-normal">   
-            <label className="label">About</label>
-          </div>  
           <div className="field-body">
             <div className="field">
               <div className="control">

@@ -24,9 +24,6 @@ const handleSubmit = e => {
     <h2 className='title'>New Blog Post</h2>
       <form>
         <div className="field is-horizontal">
-          <div className="field-label is-normal">
-            <label className="label">Title:</label>
-          </div>
           <div className="field-body">
             <div className="field">
               <div className="control">
@@ -37,9 +34,6 @@ const handleSubmit = e => {
         </div>    
 
         <div className="field is-horizontal">  
-          <div className="field-label is-normal">   
-            <label className="label">Text:</label>
-          </div>
           <div className="field-body">
             <div className="field">
               <div className="control">
@@ -50,8 +44,6 @@ const handleSubmit = e => {
         </div> 
 
         <div className="field is-horizontal">          
-          <div className="field-label">
-          </div>  
           <div className="field-body">
             <div className="field">
               <div className="control">
