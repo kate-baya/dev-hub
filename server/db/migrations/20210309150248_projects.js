@@ -3,6 +3,7 @@ exports.up = function(knex) {
   return knex.schema.createTable('projects', table => {
     table.increments('id')
     table.string('user_id')
+    table.boolean('favorite')
     table.string('title')
     table.string('about')
   })
