@@ -17,7 +17,7 @@ import Project from './Project'
 import UserProject from './UserProject'
 import NewProjectBlogPost from './NewProjectBlogPost'
 import UnAuthNavBar from './UnAuthNavBar'
-import { getPosts } from '../apis/blog'
+import { getPosts, getProjectPosts } from '../apis/blog'
 import { getProjects } from '../apis/project'
 
 function App(props) {
@@ -55,7 +55,6 @@ function App(props) {
       })
     getProjects()
       .then(projects => {
-        console.log(projects)
         props.dispatch(setProjects(projects))
       })  
   },[])

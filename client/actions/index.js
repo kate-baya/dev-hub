@@ -11,7 +11,6 @@ export function setPosts (blog) {
 }
 
 export function setProjects (projects) {
-  console.log(projects)
   return {
     type: SET_PROJECTS,
     projects: projects

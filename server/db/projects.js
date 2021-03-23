@@ -10,6 +10,12 @@ function getProjects (db = connection) {
   .select()
 }
 
+function getProject(id, db = connection) {
+  return db('projects')
+  .where('id', id)
+  .select()
+}
+
 function getUserProjects (userId, db = connection) {
   return db('projects')
   .select()
@@ -33,5 +39,6 @@ module.exports = {
   getProjects,
   getUserProjects,
   addToFavorites,
-  getFavorites
+  getFavorites,
+  getProject
 }

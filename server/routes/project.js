@@ -30,6 +30,19 @@ router.get('/projects', (req, res) => {
   })
 })
 
+router.get('/project/:id', (req, res) => {
+  const id = req.params.id
+  db.getProject(id)
+  .then(project => {
+    res.json(project)
+    return null
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({message: 'This route is not working correctly'})
+  })
+})
+
 router.get('/projects/:id', (req, res) => {
   const userId = req.params.id
   db.getUserProjects(userId)

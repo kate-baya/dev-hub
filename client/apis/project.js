@@ -17,6 +17,14 @@ export function getProjects() {
     .then(res => res.body)
 }
 
+export function getProject(id) {
+  return request
+  .get(`${rootUrl}/project/${id}`)
+    .then(res => {
+      return res.body
+    })
+}
+
 export function getUserProjects(userId) {
   return request
   .get(`${rootUrl}/projects/${userId}`)
