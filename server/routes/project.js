@@ -6,8 +6,8 @@ const router = express.Router()
 
 router.post('/newProject', (req, res) => {
   const {project, user_id} = req.body
-  const {title, about} = project
-  db.saveProject(title, about, user_id)
+  const {title, about, favorite} = project
+  db.saveProject(title, about, user_id, favorite)
   .then(newProject => {
     res.status(201).json(newProject)
     return null

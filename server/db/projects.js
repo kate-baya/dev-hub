@@ -1,8 +1,8 @@
 const connection = require('./connection')
 
-function saveProject (title, about, user_id, db = connection) {
+function saveProject (title, about, user_id, favorite, db = connection) {
   return db('projects')
-  .insert({title, about, user_id})
+  .insert({title, about, user_id, favorite})
 }
 
 function getProjects (db = connection) {
