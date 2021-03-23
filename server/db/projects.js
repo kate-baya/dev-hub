@@ -40,5 +40,5 @@ module.exports = {
   getUserProjects,
   addToFavorites,
   getFavorites,
-  getProject
+  getProject,
 }

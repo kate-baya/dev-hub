@@ -68,4 +68,10 @@ function Project(props) {
   )
 }
 
-export default connect()(Project)
+const mapStateToProps = (globalState) => {
+  return {
+    user: globalState.user
+  }
+}
+
+export default connect(mapStateToProps)(Project)
