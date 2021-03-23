@@ -1,8 +1,8 @@
 const connection = require('./connection')
 
-function saveProject (title, about, user_id, favorite, db = connection) {
+function saveProject (title, about, user_id, db = connection) {
   return db('projects')
-  .insert({title, about, user_id, favorite})
+  .insert({title, about, user_id})
 }
 
 function getProjects (db = connection) {
@@ -16,8 +16,14 @@ function getUserProjects (userId, db = connection) {
   .where('user_id', userId)
 }
 
+function addToFavorites (user_id, project_id, db = connection) {
+  return db('favorite-projects')
+  .insert({user_id, project_id})
+}
+
 module.exports = {
   saveProject,
   getProjects,
-  getUserProjects
+  getUserProjects,
+  addToFavorites
 }

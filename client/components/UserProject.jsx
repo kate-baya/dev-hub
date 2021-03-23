@@ -1,8 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import {saveFavorite} from '../apis/project'
 
 class UserProject extends React.Component {
+
+  state = {
+    favorite: false
+  }
+
   findProject = () => {
     return this.props.projects.find(project => {
       return project.id == this.props.match.params.id
@@ -19,6 +25,12 @@ class UserProject extends React.Component {
     this.filterProjectBlogPosts()
   }
 
+  addToFavorites () {
+    const favorite = this.findProject()
+    console.log(this.props.user.id, favorite.id)
+    saveFavorite(this.props.user.id, favorite.id)
+  }
+
   render() {
     const project = this.findProject()
     const blogs = this.filterProjectBlogPosts()
@@ -33,6 +45,7 @@ class UserProject extends React.Component {
               </div>
               <div className='column is-2'>
               <Link to={`/newProjectPost/${project.id}`}><button className='button is-info top-margin-33'>Create Post</button></Link>
+              <button className='button is-info vertical-space-4' onClick={() => this.addToFavorites()}>Favourite</button>
               </div>
             </div>
           </div>
@@ -60,7 +73,8 @@ class UserProject extends React.Component {
 function mapStateToProps(globalState) {
   return {
     projects: globalState.projects,
-    blog: globalState.blog
+    blog: globalState.blog,
+    user: globalState.user
   }
 }
 

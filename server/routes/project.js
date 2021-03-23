@@ -43,4 +43,18 @@ router.get('/projects/:id', (req, res) => {
   })
 })
 
+router.post('/favorite/:user_id/:project_id', (req, res) => {
+  const userId = req.params.user_id
+  const projectId = req.params.project_id
+  db.addToFavorites(userId, projectId)
+  .then(newFavorite => {
+    res.status(201).json(newFavorite)
+    return null
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({message: 'This route is not working correctly'})
+  })
+})
+
 module.exports = router
