@@ -23,11 +23,17 @@ export function getUserProjects(userId) {
   .then(res => res.body)
 }
 
-export function saveFavorite(user_id, project_id) {
+export function saveFavorite(user_id, project_id, title) {
   return request
-  .post(`${rootUrl}/favorite/${user_id}/${project_id}`)
-  .send({user_id, project_id})
+  .post(`${rootUrl}/favorite/${user_id}/${project_id}/${title}`)
+  .send({user_id, project_id, title})
   .then(res => {
     return res.body
   })
+}
+
+export function getFavorites(id) {
+  return request
+  .get(`${rootUrl}/favorite/${id}`)
+  .then(res => res.body)
 }

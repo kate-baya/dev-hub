@@ -27,8 +27,8 @@ class UserProject extends React.Component {
 
   addToFavorites () {
     const favorite = this.findProject()
-    console.log(this.props.user.id, favorite.id)
-    saveFavorite(this.props.user.id, favorite.id)
+    console.log(this.props.user.id, favorite.id, favorite.title)
+    saveFavorite(this.props.user.id, favorite.id, favorite.title)
   }
 
   render() {

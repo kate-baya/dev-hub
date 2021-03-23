@@ -1,6 +1,7 @@
 export const SET_POSTS = 'SET_POSTS'
 export const SET_PROJECTS = 'SET_PROJECTS'
 export const SET_USER = 'SET_USER'
+export const SET_FAVORITES = 'SET_FAVORITES'
 
 export function setPosts (blog) {
   return {
@@ -27,5 +28,12 @@ export function fetchUser(user) {
   return dispatch => {
     dispatch(setUser(user))
     return null
+  }
+}
+
+export function setFavorites(favorites) {
+  return {
+    type: SET_FAVORITES,
+    favorites: favorites
   }
 }

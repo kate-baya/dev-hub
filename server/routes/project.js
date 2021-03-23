@@ -43,12 +43,26 @@ router.get('/projects/:id', (req, res) => {
   })
 })
 
-router.post('/favorite/:user_id/:project_id', (req, res) => {
+router.post('/favorite/:user_id/:project_id/:title', (req, res) => {
   const userId = req.params.user_id
   const projectId = req.params.project_id
-  db.addToFavorites(userId, projectId)
+  const title = req.params.title
+  db.addToFavorites(userId, projectId, title)
   .then(newFavorite => {
     res.status(201).json(newFavorite)
+    return null
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({message: 'This route is not working correctly'})
+  })
+})
+
+router.get('/favorite/:id', (req, res) => {
+  const id = req.params.id
+  db.getFavorites(id)
+  .then(favorites => {
+    res.json(favorites)
     return null
   })
   .catch(err => {

@@ -16,14 +16,22 @@ function getUserProjects (userId, db = connection) {
   .where('user_id', userId)
 }
 
-function addToFavorites (user_id, project_id, db = connection) {
+function addToFavorites (user_id, project_id, title, db = connection) {
   return db('favorite-projects')
-  .insert({user_id, project_id})
+  .insert({user_id, project_id, title})
+}
+
+function getFavorites (id, db = connection) {
+  return db('favorite-projects')
+  .where('user_id', id)
+  // .join('projects', 'favorite-projects.project_id', 'projects.id')
+  .select()
 }
 
 module.exports = {
   saveProject,
   getProjects,
   getUserProjects,
-  addToFavorites
+  addToFavorites,
+  getFavorites
 }
