@@ -18,7 +18,7 @@ router.post('/newProject', (req, res) => {
   })
 })
 
-router.get('/projects', (req, res) => {
+router.get('/', (req, res) => {
   db.getProjects()
   .then(projects => {
     res.json(projects)
@@ -43,6 +43,8 @@ router.get('/project/:id', (req, res) => {
   })
 })
 
+//user project list
+
 router.get('/projects/:id', (req, res) => {
   const userId = req.params.id
   db.getUserProjects(userId)
@@ -55,6 +57,8 @@ router.get('/projects/:id', (req, res) => {
     res.status(500).json({message: 'This route is not working correctly'})
   })
 })
+
+//favorites 
 
 router.post('/favorite/:user_id/:project_id/:title', (req, res) => {
   const userId = req.params.user_id

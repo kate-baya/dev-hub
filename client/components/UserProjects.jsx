@@ -19,7 +19,7 @@ function UserProjects(props) {
 
   return (
     <>
-      <p className='title'>Project List</p>
+      <p className='title'>My Projects</p>
       {state.projects.map(project => {
         return <div key={project.id}>
           <article className="tile is-child notification has-background-white-ter">

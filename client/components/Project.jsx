@@ -24,10 +24,8 @@ function Project(props) {
       });
   }, []);
 
-  const addToFavorites = (e) => {
-    e.preventDefault()
-    console.log(this.props.user.id, favorite.id, favorite.title)
-    saveFavorite(props.user.id, favorite.id, favorite.title)
+  const addToFavorites = () => {
+    saveFavorite(props.user.id, state.project[0].id, state.project[0].title)
   }
 
   return (
@@ -44,7 +42,7 @@ function Project(props) {
               })}
             </div>
             <div className='column is-2'>
-              <button className='button is-info vertical-space-4' onClick={(e) => addToFavorites()}>Favourite</button>
+              <button className='button is-info vertical-space-4' onClick={() => addToFavorites()}>Favourite</button>
             </div>
           </div>
         </div>

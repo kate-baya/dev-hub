@@ -27,7 +27,7 @@ function UserProject(props) {
 
   const addToFavorites = (e) => {
     // console.log(this.props.user.id, favorite.id, favorite.title)
-    saveFavorite(props.user.id, favorite.id, favorite.title)
+    saveFavorite(props.user.id, state.project[0].id, state.project[0].title)
   }
 
   return (

@@ -13,8 +13,9 @@ export function createNewProject (project, user_id) {
 
 export function getProjects() {
   return request
-  .get(`${rootUrl}/projects`)
-    .then(res => res.body)
+  .get(`${rootUrl}`)
+    .then(res => {
+      return res.body})
 }
 
 export function getProject(id) {

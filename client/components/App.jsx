@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { HashRouter as Router, Route, Link } from 'react-router-dom'
 import { GoogleLogin, GoogleLogout } from 'react-google-login'
 import { fetchUser, setPosts, setProjects } from '../actions'
+import { getPosts } from '../apis/blog'
+import { getProjects } from '../apis/project'
 
 import UnAuthHome from './UnAuthHome'
 import Home from './Home'
@@ -17,8 +19,6 @@ import Project from './Project'
 import UserProject from './UserProject'
 import NewProjectBlogPost from './NewProjectBlogPost'
 import UnAuthNavBar from './UnAuthNavBar'
-import { getPosts, getProjectPosts } from '../apis/blog'
-import { getProjects } from '../apis/project'
 
 function App(props) {
 

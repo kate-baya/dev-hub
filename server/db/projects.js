@@ -6,6 +6,7 @@ function saveProject (title, about, user_id, db = connection) {
 }
 
 function getProjects (db = connection) {
+  console.log('db function hit')
   return db('projects')
   .select()
 }
