@@ -26,14 +26,19 @@ class UserProject extends React.Component {
       <>
         <div className='hero is-primary'>
           <div className='hero-body'>
-          <h2 className='title'>Project Title: {project.title}</h2> 
-          <p className='subtitle'>About: {project.about}</p>
+            <div className='columns'>
+              <div className='column'>
+                <h2 className='title'>Project Title: {project.title}</h2>
+                <p className='subtitle'>About: {project.about}</p>
+              </div>
+              <div className='column is-2'>
+              <Link to={`/newProjectPost/${project.id}`}><button className='button is-info top-margin-33'>Create Post</button></Link>
+              </div>
+            </div>
+          </div>
         </div>
-        </div>
-        <div className="vertical-space-4"></div>
-        <Link to={`/newProjectPost/${project.id}`}><button className='button is-info'>Create Post</button></Link>
-        <div className="vertical-space-4"></div>
         <div>
+          <div className='vertical-space-6'></div>
           {blogs.map(blog => {
             return <div key={blog.id}>
               <article className="tile is-child notification has-background-white-ter">

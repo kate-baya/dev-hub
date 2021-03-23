@@ -70,13 +70,21 @@ const AuthenticatedView = ({ user, logout }) => {
               </div>
 
               <div className="navbar-end">
-                <div className="navbar-item">
-                  <div className="buttons">
-                    <GoogleLogout
-                      clientId="1024724715081-t0plpqqmnkrqvoit0700ul3kn2ken5ci.apps.googleusercontent.com"
-                      buttonText="Logout"
-                      onLogoutSuccess={logout}
-                      className="button is-light" />
+                <div className='navbar-item has-dropdown is-hoverable'>
+                  <a className='navbar-link'>
+                  <img src={user.image}/>
+                  <p className='horizontal-space-6'>{user.name}</p>
+                  </a>
+                  <div className="navbar-dropdown">
+                    <div className="navbar-item">
+                      <div className="buttons">
+                        <GoogleLogout
+                          clientId="1024724715081-t0plpqqmnkrqvoit0700ul3kn2ken5ci.apps.googleusercontent.com"
+                          buttonText="Logout"
+                          onLogoutSuccess={logout}
+                          className="button is-light" />
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -90,7 +98,7 @@ const AuthenticatedView = ({ user, logout }) => {
               <div className='columns'>
                 <RecentPosts />
                 <div className="columnSpacer"></div>
-                <div className='column is-four-fifths' style={{paddingTop: '0px'}}>
+                <div className='column is-four-fifths' style={{ paddingTop: '0px' }}>
                   <Route path='/' exact={true} component={Home} />
                   <Route path="/blogPost/:id" component={BlogPost} />
                   <Route path="/newPost" component={NewPost} />
@@ -100,7 +108,7 @@ const AuthenticatedView = ({ user, logout }) => {
                   <Route path="/newProjectPost/:id" component={NewProjectBlogPost} />
                   <Route path='/projects' exact={true} component={Projects} />
                 </div>
-              
+
               </div>
             </div>
           </div>
