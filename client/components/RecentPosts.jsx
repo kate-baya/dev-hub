@@ -2,16 +2,16 @@ import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-import { setPosts } from '../actions'
-import { getPosts } from '../apis/blog'
+import { setFavorites } from '../actions'
+import { getFavorites } from '../apis/project'
 
 
 function RecentPosts(props) {
 
   useEffect(() => {
-    getPosts()
-      .then(posts => {
-        props.dispatch(setPosts(posts))
+    getFavorites(props.user.id)
+      .then(favorites => {
+        props.dispatch(setFavorites(favorites))
       })
   })
 
@@ -19,15 +19,15 @@ function RecentPosts(props) {
     <>
         <article className="message is-primary">
           <div className='message-header spacer'>
-            <p className='title is-5'>Recent Posts</p>
+            <p className='title is-5'>Favorite Projects</p>
           </div>
 
           <div className='message-body'>
             <div className='content'>
-              {props.blog.map((post) => {
-                return <div className='highlight' key={post.id}>
+              {props.favorites.map((project) => {
+                return <div className='highlight' key={project.id}>
                   <p>
-                    <Link to={`/blogPost/${post.id}`}>{post.title}</Link>
+                    <Link to={`/project/${project.project_id}`}>{project.title}</Link>
                   </p>
                 </div>
               })}
@@ -40,7 +40,8 @@ function RecentPosts(props) {
 
 function mapStateToProps(globalState) {
   return {
-    blog: globalState.blog
+    user: globalState.user,
+    favorites: globalState.favorites
   }
 }
 

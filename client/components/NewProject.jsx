@@ -6,7 +6,7 @@ function NewProject (props) {
 
   const [state, setState] = useState({
     title: '',
-    about: ''
+    about: '',
   })
 
   const handleChange = e => {

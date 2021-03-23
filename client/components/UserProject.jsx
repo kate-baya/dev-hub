@@ -1,8 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import {saveFavorite} from '../apis/project'
 
 class UserProject extends React.Component {
+
+  state = {
+    favorite: false
+  }
+
   findProject = () => {
     return this.props.projects.find(project => {
       return project.id == this.props.match.params.id
@@ -19,6 +25,12 @@ class UserProject extends React.Component {
     this.filterProjectBlogPosts()
   }
 
+  addToFavorites () {
+    const favorite = this.findProject()
+    console.log(this.props.user.id, favorite.id, favorite.title)
+    saveFavorite(this.props.user.id, favorite.id, favorite.title)
+  }
+
   render() {
     const project = this.findProject()
     const blogs = this.filterProjectBlogPosts()
@@ -26,14 +38,20 @@ class UserProject extends React.Component {
       <>
         <div className='hero is-primary'>
           <div className='hero-body'>
-          <h2 className='title'>Project Title: {project.title}</h2> 
-          <p className='subtitle'>About: {project.about}</p>
+            <div className='columns'>
+              <div className='column'>
+                <h2 className='title'>Project Title: {project.title}</h2>
+                <p className='subtitle'>About: {project.about}</p>
+              </div>
+              <div className='column is-2'>
+              <Link to={`/newProjectPost/${project.id}`}><button className='button is-info top-margin-33'>Create Post</button></Link>
+              <button className='button is-info vertical-space-4' onClick={() => this.addToFavorites()}>Favourite</button>
+              </div>
+            </div>
+          </div>
         </div>
-        </div>
-        <div className="vertical-space-4"></div>
-        <Link to={`/newProjectPost/${project.id}`}><button className='button is-info'>Create Post</button></Link>
-        <div className="vertical-space-4"></div>
         <div>
+          <div className='vertical-space-6'></div>
           {blogs.map(blog => {
             return <div key={blog.id}>
               <article className="tile is-child notification has-background-white-ter">
@@ -55,7 +73,8 @@ class UserProject extends React.Component {
 function mapStateToProps(globalState) {
   return {
     projects: globalState.projects,
-    blog: globalState.blog
+    blog: globalState.blog,
+    user: globalState.user
   }
 }
 
