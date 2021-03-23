@@ -56,7 +56,7 @@ const AuthenticatedView = ({ user, logout }) => {
   return (
     <>
       <Router>
-        <nav className="navbar" role="navigation" aria-label="main navigation">
+        <nav className="navbar stick" role="navigation" aria-label="main navigation">
           <div className='container'>
             <div className="navbar-brand">
               <Link to='/' className="navbar-item">
@@ -84,13 +84,13 @@ const AuthenticatedView = ({ user, logout }) => {
           </div>
         </nav>
 
-        <section className="hero is-success">
+        <section className="hero has-background-grey-lighter">
           <div className='hero-body'>
             <div className='container'>
               <div className='columns'>
                 <RecentPosts />
                 <div className="columnSpacer"></div>
-                <div className='column is-four-fifths'>
+                <div className='column is-four-fifths' style={{paddingTop: '0px'}}>
                   <Route path='/' exact={true} component={Home} />
                   <Route path="/blogPost/:id" component={BlogPost} />
                   <Route path="/newPost" component={NewPost} />

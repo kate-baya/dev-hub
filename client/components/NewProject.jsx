@@ -44,8 +44,6 @@ function NewProject (props) {
         </div> 
 
         <div className="field is-horizontal">          
-          <div className="field-label">
-          </div>  
             <div className="field-body">
               <div className="field">
                 <div className="control">

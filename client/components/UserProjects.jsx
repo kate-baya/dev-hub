@@ -18,7 +18,7 @@ function UserProjects(props) {
       <p className='title'>Project List</p>
       {props.projects.map(project => {
         return <div key={project.id}>
-          <article className="tile is-child notification is-danger">
+          <article className="tile is-child notification has-background-white-ter">
             <div className='content'>
               <div className='highlight'>
                 <p>
@@ -27,7 +27,7 @@ function UserProjects(props) {
               </div>
             </div>
           </article>
-          <div className="horizontal-space-4"></div>
+          <div className="vertical-space-4"></div>
         </div>
 
       })}

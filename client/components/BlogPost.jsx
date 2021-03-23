@@ -14,8 +14,8 @@ class BlogPost extends React.Component {
 
     return (
       <>
-      <div class="tile is-ancestor">
-      <div className="tile is-vertical  is-child notification is-danger">
+      <div className="tile is-ancestor">
+      <div className="tile is-vertical  is-child notification has-background-white-ter">
           <p className='title is-4'>{blog.title}</p>
           <p className='wrap'>{blog.post}</p>
           </div>
