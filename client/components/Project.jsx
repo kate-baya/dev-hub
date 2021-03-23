@@ -1,9 +1,9 @@
 import React from 'react'
-import { connect } from 'react-redux'
+import {connect} from 'react-redux'
 import { Link } from 'react-router-dom'
 import {saveFavorite} from '../apis/project'
 
-class UserProject extends React.Component {
+class Project extends React.Component {
 
   findProject = () => {
     return this.props.projects.find(project => {
@@ -37,11 +37,11 @@ class UserProject extends React.Component {
           <div className='hero-body'>
             <div className='columns'>
               <div className='column'>
-                <h2 className='title'>Project Title: {project.title}</h2>
-                <p className='subtitle'>About: {project.about}</p>
+                {/* <h2 className='title'>Project Title: {project.title}</h2> */}
+                {/* <p className='subtitle'>About: {project.about}</p> */}
               </div>
               <div className='column is-2'>
-              <Link to={`/newProjectPost/${project.id}`}><button className='button is-info top-margin-33'>Create Post</button></Link>
+              {/* <Link to={`/newProjectPost/${project.id}`}><button className='button is-info top-margin-33'>Create Post</button></Link> */}
               <button className='button is-info vertical-space-4' onClick={(e) => this.addToFavorites()}>Favourite</button>
               </div>
             </div>
@@ -49,7 +49,7 @@ class UserProject extends React.Component {
         </div>
         <div>
           <div className='vertical-space-6'></div>
-          {blogs.map(blog => {
+          {/* {blogs.map(blog => {
             return <div key={blog.id}>
               <article className="tile is-child notification has-background-white-ter">
                 <div className='content'>
@@ -60,19 +60,19 @@ class UserProject extends React.Component {
               </article>
               <div className="vertical-space-4"></div>
             </div>
-          })}
+          })} */}
         </div>
       </>
     )
   }
 }
 
-function mapStateToProps(globalState) {
+const mapStateToProps = (globalState) => {
+  console.log(globalState)
   return {
     projects: globalState.projects,
-    blog: globalState.blog,
-    user: globalState.user
+    blog: globalState.blog
   }
 }
 
-export default connect(mapStateToProps)(UserProject)
+export default connect(mapStateToProps)(Project)

@@ -6,7 +6,7 @@ import { setFavorites } from '../actions'
 import { getFavorites } from '../apis/project'
 
 
-function RecentPosts(props) {
+function Favorites(props) {
 
   useEffect(() => {
     getFavorites(props.user.id)
@@ -45,4 +45,4 @@ function mapStateToProps(globalState) {
   }
 }
 
-export default connect(mapStateToProps)(RecentPosts)
+export default connect(mapStateToProps)(Favorites)
