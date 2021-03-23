@@ -1,25 +1,37 @@
-import React, {useEffect} from 'react'
-import {Link} from 'react-router-dom'
-import {connect} from 'react-redux'
-import {getUserProjects} from '../apis/project'
-import {setProjects} from '../actions'
+import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { getUserProjects } from '../apis/project'
+import { setProjects } from '../actions'
 
-function UserProjects (props) {
+function UserProjects(props) {
 
   useEffect(() => {
     getUserProjects(props.user.id)
-    .then(projects => {
-      props.dispatch(setProjects(projects))
-    })
+      .then(projects => {
+        props.dispatch(setProjects(projects))
+      })
   })
 
   return (
-    <div className='hero-body'>
-      <h3 className='title'>Project List</h3>
+    <>
+      <p className='title'>Project List</p>
       {props.projects.map(project => {
-        return <Link to={`/userProjects/${project.id}`} key={project.id}><p>{project.title}</p></Link>
+        return <div key={project.id}>
+          <article className="tile is-child notification has-background-white-ter">
+            <div className='content'>
+              <div className='highlight'>
+                <p>
+                  <Link to={`/userProjects/${project.id}`}>{project.title}</Link>
+                </p>
+              </div>
+            </div>
+          </article>
+          <div className="vertical-space-4"></div>
+        </div>
+
       })}
-    </div>
+    </>
   )
 }
 

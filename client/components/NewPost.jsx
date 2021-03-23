@@ -20,20 +20,42 @@ const handleSubmit = e => {
 }
 
   return (
-    <div className='hero-body'>
-      <h2 className='title'>New Blog Post</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-        <label>Title:</label>
-        <input type="text" name='title'  value={state.title} onChange={handleChange}></input>
+    <>
+    <h2 className='title'>New Blog Post</h2>
+      <form>
+        <div className="field is-horizontal">
+          <div className="field-body">
+            <div className="field">
+              <div className="control">
+                <input className="input" placeholder="Title of blog post" type="text" name='title' value={state.title} onChange={handleChange}></input>
+              </div>
+            </div>  
+          </div>
+        </div>    
+
+        <div className="field is-horizontal">  
+          <div className="field-body">
+            <div className="field">
+              <div className="control">
+                <textarea className="textarea" placeholder="Write you blog post here!" type='text' name='post' value={state.post} onChange={handleChange}></textarea>
+              </div>
+            </div>
+          </div>
+        </div> 
+
+        <div className="field is-horizontal">          
+          <div className="field-body">
+            <div className="field">
+              <div className="control">
+                <button className="button is-primary" onClick={handleSubmit}>
+                  Post
+                </button>
+              </div>
+            </div>
+          </div>   
         </div>
-        <div>
-        <label>Text:</label>
-        <textarea type='text' name='post' value={state.post} onChange={handleChange}></textarea>
-        </div>
-        <input type='submit' value='Post'></input>
       </form>
-    </div>
+    </>
   )
 }
 

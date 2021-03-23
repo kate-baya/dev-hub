@@ -56,56 +56,53 @@ const AuthenticatedView = ({ user, logout }) => {
   return (
     <>
       <Router>
-        <nav className="navbar" role="navigation" aria-label="main navigation">
-          <div className="navbar-brand">
-            <Link to='/' className="navbar-item">
-              <img src='../images/devhub.png' alt="Dev-Hub: A blog site to journal your coding projects" width="112" height="28" />
-            </Link>
-          </div>
-
-          <div id="navbarBasicExample" className="navbar-menu">
-            <div className="navbar-start">
-              <NavBar />
+        <nav className="navbar stick" role="navigation" aria-label="main navigation">
+          <div className='container'>
+            <div className="navbar-brand">
+              <Link to='/' className="navbar-item">
+                <img src='../images/devhub.png' alt="Dev-Hub: A blog site to journal your coding projects" width="112" height="28" />
+              </Link>
             </div>
 
-            <div className="navbar-end">
-              <div className="navbar-item">
-                <div className="buttons">
-                  <GoogleLogout
-                    clientId="1024724715081-t0plpqqmnkrqvoit0700ul3kn2ken5ci.apps.googleusercontent.com"
-                    buttonText="Logout"
-                    onLogoutSuccess={logout}
-                    className="button is-light" />
+            <div id="navbarBasicExample" className="navbar-menu">
+              <div className="navbar-start">
+                <NavBar />
+              </div>
+
+              <div className="navbar-end">
+                <div className="navbar-item">
+                  <div className="buttons">
+                    <GoogleLogout
+                      clientId="1024724715081-t0plpqqmnkrqvoit0700ul3kn2ken5ci.apps.googleusercontent.com"
+                      buttonText="Logout"
+                      onLogoutSuccess={logout}
+                      className="button is-light" />
+                  </div>
                 </div>
               </div>
             </div>
-    
           </div>
         </nav>
 
-        <section className="hero is-primary">
-          <div className="columns">
-            
-            <div className="column">
-              First column
-              <RecentPosts />
+        <section className="hero has-background-grey-lighter">
+          <div className='hero-body'>
+            <div className='container'>
+              <div className='columns'>
+                <RecentPosts />
+                <div className="columnSpacer"></div>
+                <div className='column is-four-fifths' style={{paddingTop: '0px'}}>
+                  <Route path='/' exact={true} component={Home} />
+                  <Route path="/blogPost/:id" component={BlogPost} />
+                  <Route path="/newPost" component={NewPost} />
+                  <Route path='/newProject' component={NewProject} />
+                  <Route path='/userProjects' exact={true} component={UserProjects} />
+                  <Route path='/userProjects/:id' component={UserProject} />
+                  <Route path="/newProjectPost/:id" component={NewProjectBlogPost} />
+                  <Route path='/projects' exact={true} component={Projects} />
+                </div>
+              
+              </div>
             </div>
-            
-            <div className="column is-7">
-              <Route path='/' exact={true} component={Home} />
-              <Route path="/blogPost/:id" component={BlogPost} />
-              <Route path="/newPost" component={NewPost} />
-              <Route path='/newProject' component={NewProject} />
-              <Route path='/userProjects' exact={true} component={UserProjects} />
-              <Route path='/userProjects/:id' component={UserProject} />
-              <Route path="/newProjectPost/:id" component={NewProjectBlogPost} />
-              <Route path='/projects' exact={true} component={Projects} />
-            </div>
-
-            <div className="column">
-              Third column
-            </div>
-
           </div>
         </section>
 
@@ -116,21 +113,61 @@ const AuthenticatedView = ({ user, logout }) => {
 
 const UnAuthenticatedView = ({ responseGoogle }) => {
   return (
-    <div>
+    <>
       <Router>
-        <UnAuthNavBar />
-        <RecentPosts />
-        <GoogleLogin
-          clientId="1024724715081-t0plpqqmnkrqvoit0700ul3kn2ken5ci.apps.googleusercontent.com"
-          buttonText="Login"
-          onSuccess={responseGoogle}
-          onFailure={responseGoogle}
-          isSignedIn={true}
-          cookiePolicy={'single_host_origin'} />
-        <Route path='/' exact={true} component={UnAuthHome} />
-        <Route path="/blogPost/:id" component={BlogPost} />
+        <nav className="navbar" role="navigation" aria-label="main navigation">
+          <div className='container'>
+            <div className="navbar-brand">
+              <Link to='/' className="navbar-item">
+                <img src='../images/devhub.png' alt="Dev-Hub: A blog site to journal your coding projects" width="112" height="28" />
+              </Link>
+            </div>
+
+            <div id="navbarBasicExample" className="navbar-menu">
+              <div className="navbar-start">
+                <UnAuthNavBar />
+              </div>
+
+              <div className="navbar-end">
+                <div className="navbar-item">
+                  <div className="buttons">
+                    <GoogleLogin
+                      clientId="1024724715081-t0plpqqmnkrqvoit0700ul3kn2ken5ci.apps.googleusercontent.com"
+                      buttonText="Login"
+                      onSuccess={responseGoogle}
+                      onFailure={responseGoogle}
+                      isSignedIn={true}
+                      cookiePolicy={'single_host_origin'} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+
+        <section className="hero is-primary">
+          <div className='hero-body'>
+            <div className='container'>
+              <div className="columns">
+
+                <div className="column">
+                  <RecentPosts />
+                </div>
+
+                <div className="column is-7">
+                  <Route path='/' exact={true} component={UnAuthHome} />
+                  <Route path="/blogPost/:id" component={BlogPost} />
+                </div>
+
+                <div className="column">
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
       </Router>
-    </div>
+    </>
   )
 }
 

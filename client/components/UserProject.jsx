@@ -1,6 +1,6 @@
 import React from 'react'
-import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 class UserProject extends React.Component {
   findProject = () => {
@@ -15,30 +15,44 @@ class UserProject extends React.Component {
     })
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.filterProjectBlogPosts()
   }
-  
-  render () {
+
+  render() {
     const project = this.findProject()
     const blogs = this.filterProjectBlogPosts()
     return (
-      <div className='hero-body'>
-        <h2 className='title'>{project.title}</h2>
-        <p className='subtitle'>{project.about}</p>
+      <>
+        <div className='hero is-primary'>
+          <div className='hero-body'>
+          <h2 className='title'>Project Title: {project.title}</h2> 
+          <p className='subtitle'>About: {project.about}</p>
+        </div>
+        </div>
+        <div className="vertical-space-4"></div>
+        <Link to={`/newProjectPost/${project.id}`}><button className='button is-info'>Create Post</button></Link>
+        <div className="vertical-space-4"></div>
         <div>
-          <h4>Project blogs</h4>
-          <Link to={`/newProjectPost/${project.id}`}><p>Create Post</p></Link>
           {blogs.map(blog => {
-            return <Link to={`/blogPost/${blog.id}`}key={blog.id}><p>{blog.title}</p></Link>
+            return <div key={blog.id}>
+              <article className="tile is-child notification has-background-white-ter">
+                <div className='content'>
+                  <div className='highlight'>
+                    <Link to={`/blogPost/${blog.id}`}><p>{blog.title}</p></Link>
+                  </div>
+                </div>
+              </article>
+              <div className="vertical-space-4"></div>
+            </div>
           })}
         </div>
-      </div>
+      </>
     )
   }
 }
 
-function mapStateToProps (globalState) {
+function mapStateToProps(globalState) {
   return {
     projects: globalState.projects,
     blog: globalState.blog
