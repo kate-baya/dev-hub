@@ -2,20 +2,24 @@ import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { HashRouter as Router, Route, Link } from 'react-router-dom'
 import { GoogleLogin, GoogleLogout } from 'react-google-login'
-import { fetchUser } from '../actions'
+import { fetchUser, setPosts, setProjects } from '../actions'
+import { getPosts } from '../apis/blog'
+import { getProjects } from '../apis/project'
 
 import UnAuthHome from './UnAuthHome'
 import Home from './Home'
-import RecentPosts from './RecentPosts'
+import Favorites from './Favorites'
 import NewPost from './NewPost'
 import BlogPost from './BlogPost'
 import NavBar from './NavBar'
 import NewProject from './NewProject'
 import UserProjects from './UserProjects'
-import Projects from './UserProjects'
+import Projects from './Projects'
+import Project from './Project'
 import UserProject from './UserProject'
 import NewProjectBlogPost from './NewProjectBlogPost'
 import UnAuthNavBar from './UnAuthNavBar'
+import BlogList from './BlogList'
 
 function App(props) {
 
@@ -44,6 +48,17 @@ function App(props) {
     setUser({ user_id: '', name: '', image: '', email: '' })
     setIsAuthenticated(false)
   }
+
+  useEffect(() => {
+    getPosts()
+      .then(posts => {
+        props.dispatch(setPosts(posts))
+      })
+    getProjects()
+      .then(projects => {
+        props.dispatch(setProjects(projects))
+      })  
+  },[])
 
   return (
     <div>
@@ -96,7 +111,7 @@ const AuthenticatedView = ({ user, logout }) => {
           <div className='hero-body'>
             <div className='container'>
               <div className='columns'>
-                <RecentPosts />
+                <Favorites />
                 <div className="columnSpacer"></div>
                 <div className='column is-four-fifths' style={{ paddingTop: '0px' }}>
                   <Route path='/' exact={true} component={Home} />
@@ -107,6 +122,8 @@ const AuthenticatedView = ({ user, logout }) => {
                   <Route path='/userProjects/:id' component={UserProject} />
                   <Route path="/newProjectPost/:id" component={NewProjectBlogPost} />
                   <Route path='/projects' exact={true} component={Projects} />
+                  <Route path='/project/:id' exact={true} component={Project} />
+                  <Route path='/blogs' component={BlogList} />
                 </div>
 
               </div>
@@ -159,7 +176,6 @@ const UnAuthenticatedView = ({ responseGoogle }) => {
               <div className="columns">
 
                 <div className="column">
-                  <RecentPosts />
                 </div>
 
                 <div className="column is-7">

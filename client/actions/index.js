@@ -1,7 +1,7 @@
 export const SET_POSTS = 'SET_POSTS'
-export const SET_PROJECTS = 'SET_PROJECTS'
 export const SET_USER = 'SET_USER'
 export const SET_FAVORITES = 'SET_FAVORITES'
+export const SET_PROJECTS = 'SET_PROJECTS'
 
 export function setPosts (blog) {
   return {

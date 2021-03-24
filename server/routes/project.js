@@ -4,6 +4,18 @@ const db = require('../db/projects')
 
 const router = express.Router()
 
+router.get('/project/projects', (req, res) => {
+  db.getProjects()
+  .then(projects => {
+    res.json(projects)
+    return null
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({message: 'This route is not working correctly'})
+  })
+})
+
 router.post('/newProject', (req, res) => {
   const {project, user_id} = req.body
   const {title, about, favorite} = project
@@ -18,10 +30,12 @@ router.post('/newProject', (req, res) => {
   })
 })
 
-router.get('/projects', (req, res) => {
-  db.getProjects()
-  .then(projects => {
-    res.json(projects)
+
+router.get('/project/:id', (req, res) => {
+  const id = req.params.id
+  db.getProject(id)
+  .then(project => {
+    res.json(project)
     return null
   })
   .catch(err => {
@@ -29,6 +43,8 @@ router.get('/projects', (req, res) => {
     res.status(500).json({message: 'This route is not working correctly'})
   })
 })
+
+//user project list
 
 router.get('/projects/:id', (req, res) => {
   const userId = req.params.id
@@ -42,6 +58,8 @@ router.get('/projects/:id', (req, res) => {
     res.status(500).json({message: 'This route is not working correctly'})
   })
 })
+
+//favorites 
 
 router.post('/favorite/:user_id/:project_id/:title', (req, res) => {
   const userId = req.params.user_id

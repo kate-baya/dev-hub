@@ -1,22 +1,26 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { getUserProjects } from '../apis/project'
-import { setProjects } from '../actions'
 
 function UserProjects(props) {
+  const [state, setState] = useState({
+    projects: []
+  })
 
-  useEffect(() => {
+    useEffect(() => {
     getUserProjects(props.user.id)
       .then(projects => {
-        props.dispatch(setProjects(projects))
+        setState({
+          projects
+        })
       })
-  })
+  }, [])
 
   return (
     <>
-      <p className='title'>Project List</p>
-      {props.projects.map(project => {
+      <p className='title'>My Projects</p>
+      {state.projects.map(project => {
         return <div key={project.id}>
           <article className="tile is-child notification has-background-white-ter">
             <div className='content'>
@@ -37,7 +41,6 @@ function UserProjects(props) {
 
 const mapStateToProps = (globalState) => {
   return {
-    projects: globalState.projects,
     user: globalState.user
   }
 }

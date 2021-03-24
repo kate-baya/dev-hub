@@ -2,6 +2,13 @@ import request from 'superagent'
 
 const rootUrl = 'http://localhost:3001/api/v1'
 
+export function getProjects() {
+  return request
+  .get(`${rootUrl}/project/projects`)
+    .then(res => {
+      return res.body})
+}
+
 export function createNewProject (project, user_id) {
   return request
   .post(`${rootUrl}/newProject`)
@@ -11,10 +18,12 @@ export function createNewProject (project, user_id) {
   })
 }
 
-export function getProjects() {
+export function getProject(id) {
   return request
-  .get(`${rootUrl}/projects`)
-    .then(res => res.body)
+  .get(`${rootUrl}/project/${id}`)
+    .then(res => {
+      return res.body
+    })
 }
 
 export function getUserProjects(userId) {

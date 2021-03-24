@@ -10,13 +10,18 @@ export function getPosts () {
     })
 }
 
+export function getProjectPosts (id) {
+  return request
+  .get(`${rootUrl}/${id}`)
+  .then(res => res.body)
+}
+
 export function saveBlog (blogPost, user_id) {
   console.log(user_id, blogPost)
   return request
     .post(`${rootUrl}/addBlog`)
     .send({blogPost, user_id})
     .then(res => {
-      console.log(res.body)
-      return res.body
+          return res.body
     })
 }

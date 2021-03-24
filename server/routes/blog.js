@@ -16,6 +16,19 @@ router.get('/', (req, res) => {
   })
 })
 
+router.get('/:id', (req, res) => {
+  const id = req.params.id
+  db.getProjectPosts(id)
+  .then(posts => {
+    res.json(posts)
+    return null
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({message: 'This route is not working correctly'})
+  })
+})
+
 router.post('/addBlog', (req, res) => {
   const {blogPost, user_id} = req.body
   const {title, post, project_id} = blogPost

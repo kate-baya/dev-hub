@@ -5,7 +5,7 @@ import { saveFavorite, getProject } from '../apis/project'
 import { getProjectPosts } from '../apis/blog'
 
 
-function UserProject(props) {
+function Project(props) {
   const [state, setState] = useState({
     project: [],
     posts: []
@@ -14,9 +14,8 @@ function UserProject(props) {
   useEffect(() => {
     getProject(props.match.params.id)
       .then(project => {
-        getProjectPosts(props.match.params.id, props.user.id)
+        getProjectPosts(props.match.params.id)
           .then(posts => {
-            console.log(project, posts)
             setState({ project, posts })
           })
       })
@@ -25,8 +24,7 @@ function UserProject(props) {
       });
   }, []);
 
-  const addToFavorites = (e) => {
-    // console.log(this.props.user.id, favorite.id, favorite.title)
+  const addToFavorites = () => {
     saveFavorite(props.user.id, state.project[0].id, state.project[0].title)
   }
 
@@ -44,7 +42,6 @@ function UserProject(props) {
               })}
             </div>
             <div className='column is-2'>
-            {/* <Link to={`/newProjectPost/${project.id}`}><button className='button is-info top-margin-33'>Create Post</button></Link> */}
               <button className='button is-info vertical-space-4' onClick={() => addToFavorites()}>Favourite</button>
             </div>
           </div>
@@ -75,4 +72,4 @@ const mapStateToProps = (globalState) => {
   }
 }
 
-export default connect(mapStateToProps)(UserProject)
+export default connect(mapStateToProps)(Project)
