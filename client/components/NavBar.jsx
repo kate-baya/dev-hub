@@ -6,6 +6,7 @@ function NavBar() {
     <>
       <Link to='/' className='navbar-item'>Home</Link>
       <Link to='/userProjects' className="navbar-item">My Projects</Link>
+      <Link to='/blogs' className="navbar-item">Blog List</Link>
 
       <div className="navbar-item has-dropdown is-hoverable">
         <a className="navbar-link">

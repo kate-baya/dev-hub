@@ -19,6 +19,7 @@ import Project from './Project'
 import UserProject from './UserProject'
 import NewProjectBlogPost from './NewProjectBlogPost'
 import UnAuthNavBar from './UnAuthNavBar'
+import BlogList from './BlogList'
 
 function App(props) {
 
@@ -122,6 +123,7 @@ const AuthenticatedView = ({ user, logout }) => {
                   <Route path="/newProjectPost/:id" component={NewProjectBlogPost} />
                   <Route path='/projects' exact={true} component={Projects} />
                   <Route path='/project/:id' exact={true} component={Project} />
+                  <Route path='/blogs' component={BlogList} />
                 </div>
 
               </div>

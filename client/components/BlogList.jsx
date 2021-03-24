@@ -2,20 +2,18 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-function ProjectList(props) {
-
-  console.log(props)
+function BlogList(props) {
 
   return (
     <>
-      <p className='title'>Trending Projects</p>
-      {props.projects.map(project => {
-        return <div key={project.id}>
+      <p className='title'>Trending Blogs</p>
+      {props.blog.map(post => {
+        return <div key={post.id}>
           <article className="tile is-child notification has-background-white-ter">
             <div className='content'>
               <div className='highlight'>
                 <p>
-                <Link to={`/project/${project.id}`}>{project.title}</Link>
+                <Link to={`/blogPost/${post.id}`}>{post.title}</Link>
                 </p>
               </div>
             </div>
@@ -29,8 +27,8 @@ function ProjectList(props) {
 
 const mapStateToProps = (globalState) => {
   return {
-    projects: globalState.projects
+    blog: globalState.blog
   }
 }
 
-export default connect(mapStateToProps)(ProjectList)
+export default connect(mapStateToProps)(BlogList)

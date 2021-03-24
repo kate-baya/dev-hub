@@ -4,6 +4,18 @@ const db = require('../db/projects')
 
 const router = express.Router()
 
+router.get('/project/projects', (req, res) => {
+  db.getProjects()
+  .then(projects => {
+    res.json(projects)
+    return null
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({message: 'This route is not working correctly'})
+  })
+})
+
 router.post('/newProject', (req, res) => {
   const {project, user_id} = req.body
   const {title, about, favorite} = project
@@ -18,17 +30,6 @@ router.post('/newProject', (req, res) => {
   })
 })
 
-router.get('/', (req, res) => {
-  db.getProjects()
-  .then(projects => {
-    res.json(projects)
-    return null
-  })
-  .catch(err => {
-    console.log(err)
-    res.status(500).json({message: 'This route is not working correctly'})
-  })
-})
 
 router.get('/project/:id', (req, res) => {
   const id = req.params.id
