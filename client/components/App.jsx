@@ -14,12 +14,12 @@ import BlogPost from './BlogPost'
 import NavBar from './NavBar'
 import NewProject from './NewProject'
 import UserProjects from './UserProjects'
-import Projects from './Projects'
 import Project from './Project'
 import UserProject from './UserProject'
 import NewProjectBlogPost from './NewProjectBlogPost'
 import UnAuthNavBar from './UnAuthNavBar'
 import BlogList from './BlogList'
+import ProjectList from './ProjectList'
 
 function App(props) {
 
@@ -121,7 +121,6 @@ const AuthenticatedView = ({ user, logout }) => {
                   <Route path='/userProjects' exact={true} component={UserProjects} />
                   <Route path='/userProjects/:id' component={UserProject} />
                   <Route path="/newProjectPost/:id" component={NewProjectBlogPost} />
-                  <Route path='/projects' exact={true} component={Projects} />
                   <Route path='/project/:id' exact={true} component={Project} />
                   <Route path='/blogs' component={BlogList} />
                 </div>
@@ -180,7 +179,10 @@ const UnAuthenticatedView = ({ responseGoogle }) => {
 
                 <div className="column is-7">
                   <Route path='/' exact={true} component={UnAuthHome} />
+                  <Route path='/blogs' component={BlogList} />
                   <Route path="/blogPost/:id" component={BlogPost} />
+                  <Route path='/projects' exact={true} component={ProjectList} />
+                  <Route path='/project/:id' exact={true} component={Project} />
                 </div>
 
                 <div className="column">
