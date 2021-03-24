@@ -4,11 +4,13 @@ import { connect } from 'react-redux'
 
 function ProjectList(props) {
 
-  console.log(props)
+  const newest = props.projects.sort(function (a, b) {
+    return b.id - a.id}
+  )
 
   return (
     <>
-      <p className='title'>Trending Projects</p>
+      <p className='title'>Latest Projects</p>
       {props.projects.map(project => {
         return <div key={project.id}>
           <article className="tile is-child notification has-background-white-ter">

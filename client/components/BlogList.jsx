@@ -4,9 +4,13 @@ import { connect } from 'react-redux'
 
 function BlogList(props) {
 
+  const newest = props.blog.sort(function (a, b) {
+    return b.id - a.id}
+  )
+
   return (
     <>
-      <p className='title'>Trending Blogs</p>
+      <p className='title'>Latest Blogs</p>
       {props.blog.map(post => {
         return <div key={post.id}>
           <article className="tile is-child notification has-background-white-ter">
