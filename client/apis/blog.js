@@ -4,7 +4,7 @@ const rootUrl = 'http://localhost:3001/api/v1'
 
 export function getPosts () {
   return request
-  .get(rootUrl)
+    .get(rootUrl)
     .then(res => {
       return res.body
     })
@@ -12,16 +12,16 @@ export function getPosts () {
 
 export function getProjectPosts (id) {
   return request
-  .get(`${rootUrl}/${id}`)
-  .then(res => res.body)
+    .get(`${rootUrl}/${id}`)
+    .then(res => res.body)
 }
 
-export function saveBlog (blogPost, user_id) {
-  console.log(user_id, blogPost)
+export function saveBlog (blogPost, userId, userName) {
+  console.log(userId, userName, blogPost)
   return request
     .post(`${rootUrl}/addBlog`)
-    .send({blogPost, user_id})
+    .send({ blogPost, userId, userName })
     .then(res => {
-          return res.body
+      return res.body
     })
 }

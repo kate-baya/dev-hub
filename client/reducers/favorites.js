@@ -1,14 +1,14 @@
-import {SET_FAVORITES} from '../actions'
+import { SET_FAVORITES } from '../actions'
 
 const initialState = []
 
 const favorites = (state = initialState, action) => {
-  switch(action.type){
+  switch (action.type) {
     case SET_FAVORITES:
       return action.favorites
 
     default:
-      return state  
+      return state
   }
 }
 

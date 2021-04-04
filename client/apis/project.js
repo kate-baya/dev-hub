@@ -2,47 +2,48 @@ import request from 'superagent'
 
 const rootUrl = 'http://localhost:3001/api/v1'
 
-export function getProjects() {
+export function getProjects () {
   return request
-  .get(`${rootUrl}/project/projects`)
-    .then(res => {
-      return res.body})
-}
-
-export function createNewProject (project, user_id) {
-  return request
-  .post(`${rootUrl}/newProject`)
-  .send({project, user_id})
-  .then(res => {
-    return res.body
-  })
-}
-
-export function getProject(id) {
-  return request
-  .get(`${rootUrl}/project/${id}`)
+    .get(`${rootUrl}/project/projects`)
     .then(res => {
       return res.body
     })
 }
 
-export function getUserProjects(userId) {
+export function createNewProject (project, userId, userName) {
   return request
-  .get(`${rootUrl}/projects/${userId}`)
-  .then(res => res.body)
+    .post(`${rootUrl}/newProject`)
+    .send({ project, userId, userName })
+    .then(res => {
+      return res.body
+    })
 }
 
-export function saveFavorite(user_id, project_id, title) {
+export function getProject (id) {
   return request
-  .post(`${rootUrl}/favorite/${user_id}/${project_id}/${title}`)
-  .send({user_id, project_id, title})
-  .then(res => {
-    return res.body
-  })
+    .get(`${rootUrl}/project/${id}`)
+    .then(res => {
+      return res.body
+    })
 }
 
-export function getFavorites(id) {
+export function getUserProjects (userId) {
   return request
-  .get(`${rootUrl}/favorite/${id}`)
-  .then(res => res.body)
+    .get(`${rootUrl}/projects/${userId}`)
+    .then(res => res.body)
+}
+
+export function saveFavorite (userId, projectId, title) {
+  return request
+    .post(`${rootUrl}/favorite/${userId}/${projectId}/${title}`)
+    .send({ userId, projectId, title })
+    .then(res => {
+      return res.body
+    })
+}
+
+export function getFavorites (id) {
+  return request
+    .get(`${rootUrl}/favorite/${id}`)
+    .then(res => res.body)
 }

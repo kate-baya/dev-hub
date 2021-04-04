@@ -1,49 +1,46 @@
-import React, {useState} from 'react'
-import {connect} from 'react-redux'
-import {saveBlog} from '../apis/blog'
+import React, { useState } from 'react'
+import { connect } from 'react-redux'
+import { saveBlog } from '../apis/blog'
 
-function NewProjectBlogPost(props) {
-
+function NewProjectBlogPost (props) {
   const [state, setState] = useState({
     title: '',
     post: '',
     project_id: ''
   })
 
-  console.log(props)
-
   const project = props.projects.find(el => {
-    return el.id == props.match.params.id
+    return el.id === props.match.params.id
   })
 
   console.log(project)
-  
+
   const handleChange = (e) => {
-    const {name, value} = e.target
-    return setState({...state, [name]: value, project_id: props.match.params.id})
+    const { name, value } = e.target
+    return setState({ ...state, [name]: value, project_id: props.match.params.id })
   }
 
   const handleSubmit = e => {
     e.preventDefault()
-    saveBlog(props.user.id, state)
+    saveBlog(props.user.id, props.user.name, state)
   }
-  
-    return (
-      <>
-        <h2 className='title'>{project.title}</h2>
-        <p className='subtitle'>Blog Post</p>
-        <form>
+
+  return (
+    <>
+      <h2 className='title'>{project.title}</h2>
+      <p className='subtitle'>Blog Post</p>
+      <form>
         <div className="field is-horizontal">
           <div className="field-body">
             <div className="field">
               <div className="control">
                 <input className="input" placeholder="Title of blog post" type="text" name='title' value={state.title} onChange={handleChange}></input>
               </div>
-            </div>  
+            </div>
           </div>
-        </div>    
+        </div>
 
-        <div className="field is-horizontal">  
+        <div className="field is-horizontal">
           <div className="field-body">
             <div className="field">
               <div className="control">
@@ -51,9 +48,9 @@ function NewProjectBlogPost(props) {
               </div>
             </div>
           </div>
-        </div> 
+        </div>
 
-        <div className="field is-horizontal">          
+        <div className="field is-horizontal">
           <div className="field-body">
             <div className="field">
               <div className="control">
@@ -62,11 +59,11 @@ function NewProjectBlogPost(props) {
                 </button>
               </div>
             </div>
-          </div>   
+          </div>
         </div>
       </form>
-      </>
-    )
+    </>
+  )
 }
 
 const mapStateToProps = (globalState) => {
@@ -76,4 +73,4 @@ const mapStateToProps = (globalState) => {
   }
 }
 
-export default connect (mapStateToProps)(NewProjectBlogPost)
+export default connect(mapStateToProps)(NewProjectBlogPost)
