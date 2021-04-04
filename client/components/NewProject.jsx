@@ -1,27 +1,26 @@
-import React, {useState} from 'react'
-import {connect} from 'react-redux'
-import {createNewProject} from '../apis/project'
+import React, { useState } from 'react'
+import { connect } from 'react-redux'
+import { createNewProject } from '../apis/project'
 
 function NewProject (props) {
-
   const [state, setState] = useState({
     title: '',
-    about: '',
+    about: ''
   })
 
   const handleChange = e => {
-    const {name, value} = e.target
-    return setState({...state, [name]: value})
+    const { name, value } = e.target
+    return setState({ ...state, [name]: value })
   }
 
   const handleSubmit = e => {
     e.preventDefault()
-    createNewProject(state, props.user.id)
+    createNewProject(state, props.user.id, props.user.name)
   }
 
   return (
     <>
-    <h2 className='title'>New Project</h2>
+      <h2 className='title'>New Project</h2>
       <form>
         <div className="field is-horizontal">
           <div className="field-body">
@@ -29,32 +28,32 @@ function NewProject (props) {
               <div className="control">
                 <input className='input' placeholder="Project title" type='text' name='title' value={state.title} onChange={handleChange}></input>
               </div>
-            </div>  
+            </div>
           </div>
-        </div>  
+        </div>
 
-        <div className="field is-horizontal">  
+        <div className="field is-horizontal">
           <div className="field-body">
             <div className="field">
               <div className="control">
-                <textarea className='input' placeholder="Tell everyone a little about your project!"  type='text' name='about' value={state.about} onChange={handleChange}></textarea>
+                <textarea className='input' placeholder="Tell everyone a little about your project!" type='text' name='about' value={state.about} onChange={handleChange}></textarea>
               </div>
             </div>
           </div>
-        </div> 
+        </div>
 
-        <div className="field is-horizontal">          
-            <div className="field-body">
-              <div className="field">
-                <div className="control">
-                  <button className="button is-primary" onClick={handleSubmit}>
+        <div className="field is-horizontal">
+          <div className="field-body">
+            <div className="field">
+              <div className="control">
+                <button className="button is-primary" onClick={handleSubmit}>
                     Create Project
-                  </button>
-                </div>
+                </button>
               </div>
-            </div>   
-          </div>    
-        </form>
+            </div>
+          </div>
+        </div>
+      </form>
     </>
   )
 }

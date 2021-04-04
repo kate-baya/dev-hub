@@ -2,12 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-function BlogList(props) {
-
-  const newest = props.blog.sort(function (a, b) {
-    return b.id - a.id}
-  )
-
+function BlogList (props) {
   return (
     <>
       <p className='title'>Latest Blogs</p>
@@ -17,7 +12,7 @@ function BlogList(props) {
             <div className='content'>
               <div className='highlight'>
                 <p>
-                <Link to={`/blogPost/${post.id}`}>{post.title}</Link>
+                  <Link to={`/blogPost/${post.id}`}>{post.title}</Link>
                 </p>
               </div>
             </div>

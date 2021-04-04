@@ -3,23 +3,24 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { getUserProjects } from '../apis/project'
 
-function UserProjects(props) {
+function UserProjects (props) {
   const [state, setState] = useState({
     projects: []
   })
 
-    useEffect(() => {
-    getUserProjects(props.user.id)
+  useEffect(() => {
+    getUserProjects(props.match.params.id)
       .then(projects => {
-        setState({
+        return setState({
           projects
         })
       })
+      .catch(err => console.log(err))
   }, [])
 
   return (
     <>
-      <p className='title'>My Projects</p>
+      <p className='title'>User Projects</p>
       {state.projects.map(project => {
         return <div key={project.id}>
           <article className="tile is-child notification has-background-white-ter">
@@ -33,7 +34,6 @@ function UserProjects(props) {
           </article>
           <div className="vertical-space-4"></div>
         </div>
-
       })}
     </>
   )

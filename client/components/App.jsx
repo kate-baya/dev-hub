@@ -1,28 +1,27 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { HashRouter as Router, Route, Link } from 'react-router-dom'
-import { GoogleLogin, GoogleLogout } from 'react-google-login'
+import { GoogleLogin } from 'react-google-login'
+
 import { fetchUser, setPosts, setProjects } from '../actions'
 import { getPosts } from '../apis/blog'
 import { getProjects } from '../apis/project'
 
 import UnAuthHome from './UnAuthHome'
-import Home from './Home'
 import Favorites from './Favorites'
 import NewPost from './NewPost'
 import BlogPost from './BlogPost'
 import NavBar from './NavBar'
 import NewProject from './NewProject'
-import UserProjects from './UserProjects'
-import Projects from './Projects'
+import UserProfile from './UserProfile'
 import Project from './Project'
 import UserProject from './UserProject'
 import NewProjectBlogPost from './NewProjectBlogPost'
 import UnAuthNavBar from './UnAuthNavBar'
 import BlogList from './BlogList'
+import ProjectList from './ProjectList'
 
-function App(props) {
-
+function App (props) {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
 
   const [user, setUser] = useState({ user_id: '', name: '', image: '', email: '' })
@@ -39,8 +38,7 @@ function App(props) {
   }
 
   useEffect(() => {
-    if (user.email.length > 0 || user.name.length > 0)
-      setIsAuthenticated(true)
+    if (user.email.length > 0 || user.name.length > 0) { setIsAuthenticated(true) }
     props.dispatch(fetchUser(user))
   }, [user])
 
@@ -52,13 +50,15 @@ function App(props) {
   useEffect(() => {
     getPosts()
       .then(posts => {
-        props.dispatch(setPosts(posts))
+        return props.dispatch(setPosts(posts))
       })
+      .catch(err => console.log(err))
     getProjects()
       .then(projects => {
-        props.dispatch(setProjects(projects))
-      })  
-  },[])
+        return props.dispatch(setProjects(projects))
+      })
+      .catch(err => console.log(err))
+  }, [])
 
   return (
     <div>
@@ -71,42 +71,7 @@ const AuthenticatedView = ({ user, logout }) => {
   return (
     <>
       <Router>
-        <nav className="navbar stick" role="navigation" aria-label="main navigation">
-          <div className='container'>
-            <div className="navbar-brand">
-              <Link to='/' className="navbar-item">
-                <img src='../images/devhub.png' alt="Dev-Hub: A blog site to journal your coding projects" width="112" height="28" />
-              </Link>
-            </div>
-
-            <div id="navbarBasicExample" className="navbar-menu">
-              <div className="navbar-start">
-                <NavBar />
-              </div>
-
-              <div className="navbar-end">
-                <div className='navbar-item has-dropdown is-hoverable'>
-                  <a className='navbar-link'>
-                  <img src={user.image}/>
-                  <p className='horizontal-space-6'>{user.name}</p>
-                  </a>
-                  <div className="navbar-dropdown">
-                    <div className="navbar-item">
-                      <div className="buttons">
-                        <GoogleLogout
-                          clientId="1024724715081-t0plpqqmnkrqvoit0700ul3kn2ken5ci.apps.googleusercontent.com"
-                          buttonText="Logout"
-                          onLogoutSuccess={logout}
-                          className="button is-light" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </nav>
-
+        <NavBar logout={logout} user={user}/>
         <section className="hero has-background-grey-lighter">
           <div className='hero-body'>
             <div className='container'>
@@ -114,23 +79,20 @@ const AuthenticatedView = ({ user, logout }) => {
                 <Favorites />
                 <div className="columnSpacer"></div>
                 <div className='column is-four-fifths' style={{ paddingTop: '0px' }}>
-                  <Route path='/' exact={true} component={Home} />
+                  <Route path='/' exact={true} component={ProjectList} />
                   <Route path="/blogPost/:id" component={BlogPost} />
                   <Route path="/newPost" component={NewPost} />
                   <Route path='/newProject' component={NewProject} />
-                  <Route path='/userProjects' exact={true} component={UserProjects} />
+                  <Route path='/user/:id' exact={true} component={UserProfile} />
                   <Route path='/userProjects/:id' component={UserProject} />
                   <Route path="/newProjectPost/:id" component={NewProjectBlogPost} />
-                  <Route path='/projects' exact={true} component={Projects} />
                   <Route path='/project/:id' exact={true} component={Project} />
                   <Route path='/blogs' component={BlogList} />
                 </div>
-
               </div>
             </div>
           </div>
         </section>
-
       </Router>
     </>
   )
@@ -174,22 +136,21 @@ const UnAuthenticatedView = ({ responseGoogle }) => {
           <div className='hero-body'>
             <div className='container'>
               <div className="columns">
-
                 <div className="column">
                 </div>
-
                 <div className="column is-7">
                   <Route path='/' exact={true} component={UnAuthHome} />
+                  <Route path='/blogs' component={BlogList} />
                   <Route path="/blogPost/:id" component={BlogPost} />
+                  <Route path='/projects' exact={true} component={ProjectList} />
+                  <Route path='/project/:id' exact={true} component={Project} />
                 </div>
-
                 <div className="column">
                 </div>
               </div>
             </div>
           </div>
         </section>
-
       </Router>
     </>
   )

@@ -4,8 +4,7 @@ import { Link } from 'react-router-dom'
 import { saveFavorite, getProject } from '../apis/project'
 import { getProjectPosts } from '../apis/blog'
 
-
-function Project(props) {
+function Project (props) {
   const [state, setState] = useState({
     project: [],
     posts: []
@@ -14,15 +13,18 @@ function Project(props) {
   useEffect(() => {
     getProject(props.match.params.id)
       .then(project => {
-        getProjectPosts(props.match.params.id)
+        return getProjectPosts(props.match.params.id)
           .then(posts => {
-            setState({ project, posts })
+            return setState({ project, posts })
+          })
+          .catch(error => {
+            console.log(error)
           })
       })
       .catch(error => {
-        console.warn(JSON.stringify(error, null, 2));
-      });
-  }, []);
+        console.warn(JSON.stringify(error, null, 2))
+      })
+  }, [])
 
   const addToFavorites = () => {
     saveFavorite(props.user.id, state.project[0].id, state.project[0].title)

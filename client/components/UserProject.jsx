@@ -4,8 +4,7 @@ import { Link } from 'react-router-dom'
 import { saveFavorite, getProject } from '../apis/project'
 import { getProjectPosts } from '../apis/blog'
 
-
-function UserProject(props) {
+function UserProject (props) {
   const [state, setState] = useState({
     project: [],
     posts: []
@@ -14,19 +13,20 @@ function UserProject(props) {
   useEffect(() => {
     getProject(props.match.params.id)
       .then(project => {
-        getProjectPosts(props.match.params.id, props.user.id)
+        return getProjectPosts(props.match.params.id, props.user.id)
           .then(posts => {
-            console.log(project, posts)
-            setState({ project, posts })
+            return setState({ project, posts })
+          })
+          .catch(error => {
+            console.warn(JSON.stringify(error, null, 2))
           })
       })
       .catch(error => {
-        console.warn(JSON.stringify(error, null, 2));
-      });
-  }, []);
+        console.warn(JSON.stringify(error, null, 2))
+      })
+  }, [])
 
   const addToFavorites = (e) => {
-    // console.log(this.props.user.id, favorite.id, favorite.title)
     saveFavorite(props.user.id, state.project[0].id, state.project[0].title)
   }
 
@@ -44,7 +44,7 @@ function UserProject(props) {
               })}
             </div>
             <div className='column is-2'>
-            {/* <Link to={`/newProjectPost/${project.id}`}><button className='button is-info top-margin-33'>Create Post</button></Link> */}
+              {/* <Link to={`/newProjectPost/${project.id}`}><button className='button is-info top-margin-33'>Create Post</button></Link> */}
               <button className='button is-info vertical-space-4' onClick={() => addToFavorites()}>Favourite</button>
             </div>
           </div>

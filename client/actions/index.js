@@ -17,21 +17,21 @@ export function setProjects (projects) {
   }
 }
 
-export function setUser(user) {
+export function setUser (user) {
   return {
     type: SET_USER,
     user
   }
 }
 
-export function fetchUser(user) {
+export function fetchUser (user) {
   return dispatch => {
     dispatch(setUser(user))
     return null
   }
 }
 
-export function setFavorites(favorites) {
+export function setFavorites (favorites) {
   return {
     type: SET_FAVORITES,
     favorites: favorites
